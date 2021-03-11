@@ -38,6 +38,8 @@
 
 
 
+  <meta property="article:modified_time" content="2021-03-11T16:13:48+09:00">
+
 
 
   
@@ -288,7 +290,7 @@
     <meta itemprop="headline" content="Jekyll Blog 시작하기">
     <meta itemprop="description" content="처음에는 Remote Theme 기능을 이용해 블로그를 만들고자 하였으나, 설정을 바꾸는데 한계가 있고 버젼 변경에 취약할 가능성이 있는 것 같습니다.하여 아예 최신 release를 받아서 계속 유지하며 블로그를 운영해보는 것으로 바꾸었습니다. 이 글은 본래 remote theme 상태에서 설정만 바꾸는 방법을 적어놓은 글이었지만, 블로그 시작하는 방법부터 설정 변경까지 모두를 적어두는 글로 수정해 다시 올린게 되었네요.">
     <meta itemprop="datePublished" content="2021-03-11T05:44:30+09:00">
-    
+    <meta itemprop="dateModified" content="2021-03-11T16:13:48+09:00">
 
     <div class="page__inner-wrap">
       
@@ -324,7 +326,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-fas fa-clipboard-list"></i> Table of Contents</h4></header>
-              <ul class="toc__menu"><li><a href="#새로-시작하기">새로 시작하기</a><ul><li><a href="#ruby-설치하기">Ruby 설치하기</a></li><li><a href="#rbenv-사용하기">rbenv 사용하기</a></li><li><a href="#bundler-jekyll-설치">Bundler, Jekyll 설치</a></li><li><a href="#로컬-서버-확인하기">로컬 서버 확인하기</a></li></ul></li><li><a href="#세부설정-변경하기">세부설정 변경하기</a><ul><li><a href="#테마-변경">테마 변경</a></li><li><a href="#테마-color-palette-변경">테마 color palette 변경</a></li><li><a href="#code-block-highlight-변경">Code Block Highlight 변경</a></li><li><a href="#폰트-변경">폰트 변경</a></li><li><a href="#폰트-사이즈-변경">폰트 사이즈 변경</a></li><li><a href="#글자-배경색-변경">글자 배경색 변경</a></li><li><a href="#문장-배열-방식-변경">문장 배열 방식 변경</a></li><li><a href="#table-of-contents-추가">Table of Contents 추가</a></li><li><a href="#favicon-만들기">Favicon 만들기</a></li><li><a href="#post에-업데이트-시간-띄우기">Post에 업데이트 시간 띄우기</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#새로-시작하기">새로 시작하기</a><ul><li><a href="#ruby-설치하기">Ruby 설치하기</a></li><li><a href="#rbenv-사용하기">rbenv 사용하기</a></li><li><a href="#bundler-jekyll-설치">Bundler, Jekyll 설치</a></li><li><a href="#로컬-서버-확인하기">로컬 서버 확인하기</a></li></ul></li><li><a href="#세부설정-변경하기">세부설정 변경하기</a><ul><li><a href="#테마-변경">테마 변경</a></li><li><a href="#테마-color-palette-변경">테마 color palette 변경</a></li><li><a href="#code-block-highlight-변경">Code Block Highlight 변경</a></li><li><a href="#폰트-변경">폰트 변경</a></li><li><a href="#폰트-사이즈-변경">폰트 사이즈 변경</a></li><li><a href="#글자-배경색-변경">글자 배경색 변경</a></li><li><a href="#문장-배열-방식-변경">문장 배열 방식 변경</a></li><li><a href="#table-of-contents-추가">Table of Contents 추가</a></li><li><a href="#favicon-만들기">Favicon 만들기</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -622,12 +624,6 @@ post markdown 파일 맨 앞에서 title, date 등의 정보를 적는 부분에
 그래서 이 블로그에서는 <img src="https://key262yek.github.io/favicon.ico" alt="favicon" />를 만들어 사용하고 있습니다.
 아이콘 자체는 인터넷에서 공짜로 만들어주는 경우도 있고, 기존에 만들어진 것을 공짜로 배포하는 사이트도 있으니 적절히 골라서 repository 제일 밖 directory에 넣어주면 잘 인식하게 됩니다.</p>
 
-<h3 id="post에-업데이트-시간-띄우기">Post에 업데이트 시간 띄우기</h3>
-
-<p>현재 블로그의 게시글 옆에는 읽는데 걸리는 예상 시간(read-time)이 있습니다.
-별로 쓸모있는 정보는 아니기에, 이를 post의 update 시간으로 바꿔쓸 수 있도록 코드를 수정하였습니다.
-<em>_includes/archive-single.html</em> 파일과 <em>_includes/single.html</em>을 수정해주면 되는데, HTML 코드는 Markdown으로 그대로 옮기기 어렵기 때문에 [commit]을 참조해주세요.</p>
-
 
         
       </section>
@@ -670,7 +666,7 @@ post markdown 파일 맨 앞에서 title, date 등의 정보를 적는 부분에
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-03-11T05:44:30+09:00">March 11, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-03-11">March 11, 2021</time></p>
 
 
       </footer>
