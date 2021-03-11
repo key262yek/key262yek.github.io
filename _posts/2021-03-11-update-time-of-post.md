@@ -17,18 +17,24 @@ toc_sticky: true
 옛날 자료들을 찾아보면 plugin을 통해서 업데이트 시각을 계산하도록 하고 있는데, 2021년 release된 Minimal-Mistakes 템플릿을 기준으로 했을 때는 업데이트 시각은 자체적으로 다른 plugin 없이 곧바로 사용할 수 있습니다. 
 당연한것이, post의 각주부분을 보시면 태그, 카테고리와 함께 업데이트 시간이 있으니 자체적으로 계산하고 있단 것을 확인할 수 있습니다.
 
-### 업데이트 시각 띄우기
+지금은 *_config.yml*의 일부만 수정해주면 됩니다.
+post의 기본 양식을 결정하는 defaults 부분에서 read_time을 false로 바꿔주고, show_date 부분을 추가해주면 됩니다.
 
-원하는 위치에 시각을 띄우기 전에 우선 해당 정보를 어떻게 확인할 수 있는지를 찾아보았습니다.
-만들어진 페이지의 html 소스를 확인해보면 `page_meta` 클래스 아래에 `page_date` 클래스 정보가 담겨져 있는걸 확인할 수 있는데요.
-`page_meta`는 *_layouts/single.html*에서 찾을 수 있었습니다.
-*page__date.html*를 불러와 아이콘부터 업데이트 시각까지 한번에 출력하는 방법입니다.
+~~~ yaml
+# Defaults
+defaults:
+  # _posts
+  - values:
+      read_time: false
+      show_date: true
+~~~
 
-{% include page__date.html %}
+이렇게 하더라도 post 부분에는 날짜만 나오고, 해당 날짜가 작성일인지 업데이트된 날짜인지 표기가 나오지 않습니다.
+이를 위해서 *_includes/page__meta.html*을 일부 수정해줍니다.
+아이콘을 출력하는 부분과 time을 출력하는 부분 사이에 아래의 문장을 넣어주면 됩니다.
 
-그에 반해, Post 제목 아래에 있는 read-time은 *page__meta.html*을 불러오는데, 여기에서 `page__meta-readtime` 클래스가 바로 예상시간을 출력해주는 부분입니다.
-readtime을 계산하는 부분을 주석처리하고, post__date.html를 삽입하면 해결됩니다.
-각각의 원문 파일은 *_includes* 폴더에 있습니다.
-
+~~~ html
+{ { site.data.ui-text[site.locale].date_label | default: "Updated:" }} 
+~~~
 
 
