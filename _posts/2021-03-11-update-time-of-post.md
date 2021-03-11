@@ -6,10 +6,6 @@ categories:
 tags:
   - HTML
   - Github Blog
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "fas fa-clipboard-list"
-toc_sticky: true
 ---
 
 현재 블로그의 게시글 옆에는 읽는데 걸리는 예상 시간(read-time)이 있습니다.
