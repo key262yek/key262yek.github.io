@@ -31,10 +31,12 @@ defaults:
 
 이렇게 하더라도 post 부분에는 날짜만 나오고, 해당 날짜가 작성일인지 업데이트된 날짜인지 표기가 나오지 않습니다.
 이를 위해서 *_includes/page__meta.html*을 일부 수정해줍니다.
-아이콘을 출력하는 부분과 time을 출력하는 부분 사이에 아래의 문장을 넣어주면 됩니다.
+아이콘을 출력하는 부분과 time을 출력하는 부분 사이에 아래의 문장을 (앞부분 중괄호 사이 띄어쓰기는 없앤채로) 넣어주면 됩니다.
 
 ~~~ html
 { { site.data.ui-text[site.locale].date_label | default: "Updated:" }} 
 ~~~
+
+자세한 사항은 이 [commit](https://github.com/key262yek/key262yek.github.io/commit/c955e2bf588b2dd22da68c18d13a6f31e1aeea1e)을 통해 확인하세요. 
 
 
