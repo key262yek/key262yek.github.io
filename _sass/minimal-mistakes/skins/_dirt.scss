@@ -7,6 +7,38 @@ $background-color: #f3f3f3 !default;
 $text-color: #343434 !default;
 $muted-text-color: #8e8b82 !default;
 $primary-color: #343434 !default;
+$border-color: #e7dfca !default;
+$footer-background-color: #eee8d5 !default;
+$link-color: #343434 !default;
+$masthead-link-color: $text-color !default;
+$masthead-link-color-hover: $text-color !default;
+$navicon-link-color-hover: mix(#fff, $text-color, 80%) !default;
+
+/* dirt syntax highlighting (base16) */
+$base00: #fdf6e3 !default;    /* Background */
+$base01: #073642 !default;    /* Meaningless */
+$base02: #586e75 !default;    /* Meaningless */
+$base03: #657b83 !default;    /* Meaningless */
+$base04: #93a1a1 !default;    /* Comment */
+$base05: #657b83 !default;    /* Body Contents */
+$base06: #eee8d5 !default;    /* Meaningless */
+$base07: #fdf6e3 !default;    /* Meaningless */
+$base08: #dc322f !default;    /* red */
+$base09: #cb4b16 !default;    /* Meaningless orange */
+$base0a: #b58900 !default;    /*  yellow  */
+$base0b: #2aa198 !default;    /*  cyan  */
+$base0c: #268bd2 !default;    /*  blue  */
+$base0d: #859900 !default;    /*  green  */
+$base0e: #6c71c4 !default;    /*  violet  */
+$base0f: #d33682 !default;    /* Meaningless magenta */
+
+
+
+/* Original configuration */
+/*$background-color: #f3f3f3 !default;
+$text-color: #343434 !default;
+$muted-text-color: #8e8b82 !default;
+$primary-color: #343434 !default;
 $border-color: #e9dcbe !default;
 $footer-background-color: #e9dcbe !default;
 $link-color: #343434 !default;
@@ -14,7 +46,6 @@ $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: $text-color !default;
 $navicon-link-color-hover: mix(#fff, $text-color, 80%) !default;
 
-/* dirt syntax highlighting (base16) */
 $base00: #231e18 !default;
 $base01: #302b25 !default;
 $base02: #48413a !default;
@@ -30,4 +61,4 @@ $base0b: #b7ba53 !default;
 $base0c: #6eb958 !default;
 $base0d: #88a4d3 !default;
 $base0e: #bb90e2 !default;
-$base0f: #b49368 !default;
+$base0f: #b49368 !default;*/

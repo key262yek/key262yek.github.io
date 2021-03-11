@@ -1,5 +1,0 @@
-I"�<p>Markdown은 자체 표기법을 사용해 HTML과 같은 웹페이지 양식을 만드는 기능을 지칭한다.
-지금 작성하고 있는 블로그의 글들은 모두 확장자 .md로 쓰여있는데, 이는 markdown의 약자로 문법을 잘 지켜 작성한다면 블로그의 글에 여러 효과를 쉽게 줄 수 있다.
-Markdown은 John Gruber와 Aaron Swartz가 2004년 처음 만든 이래로 표준화되지 못하고 PHP MArkdown Extra, Multimarkdown, Github Flavored Markdown 등으로 파편화되었다.
-이 중 Github 블로그는 Kramdown이라는 Markdown을 지원한다. 앞으로 원활하고 깔끔한 블로그 글 작성을 위하여 Kramdown의 기능을 익히는 포스트를 첫번째 포스트로 하고자 한다.</p>
-:ET
