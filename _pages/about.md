@@ -9,7 +9,7 @@ title: "About"
 
 ## Research Interests
 Stochastic Process: Random target searching with interaction.  
-Feminism philosophies of Science.  
+Feminist philosophies of Science.  
 Knowledge tracing on science education.  
 
 ## Publications
