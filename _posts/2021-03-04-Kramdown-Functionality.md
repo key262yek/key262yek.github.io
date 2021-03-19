@@ -259,6 +259,19 @@ A link to the [kramdown hp].
 >
 > [kramdown hp]: http://kramdown.gettalong.org "hp"
 
+만약 블로그 내의 파일로의 internal link를 만들고 싶으면 아래의 문법을 사용하면 됩니다.
+(앞쪽 괄호 {와 %사이 띄어쓰기만 없애)
+
+~~~ markdown
+
+[링크]({ % post_url 2021-03-10-layout %})
+
+[링크](/blog/layout/)
+~~~
+
+> [링크]({% post_url 2021-03-10-layout %})  
+> [링크](/blog/layout/)
+
 -------
 
 ### 9. 이미지

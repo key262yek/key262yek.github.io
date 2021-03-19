@@ -5,7 +5,7 @@ categories:
   - Blog
 tags:
   - Jekyll
-  - Github Blog
+  - MathJax
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
