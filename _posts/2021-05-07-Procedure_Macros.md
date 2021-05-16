@@ -15,8 +15,8 @@ toc_sticky: true
 ---
 
 제 Github에는 [rts](https://github.com/key262yek/rts)[^1]라는 repository가 있습니다.
-Random Target Search 시뮬레이션을 위해서 다양한 System, Target, Searcher들을 미리 구현해두고, 나아가 Time iterator를 constant time step, exponential time step 등의 조건도 선택해 시뮬레이션 할 수 있도록 하고 있습니다.
-규칙에 맞춰 코드를 작성하면 시뮬레이션에 필요한 input parameter들도 알려주고, 데이터 값을 읽어 분석하는 것도 한번에 구현할 수 있습니다.
+Random Target Search 시뮬레이션을 위해서 다양한 System, Target, Searcher들을 구현할 수 있고, 나아가 Time iterator를 constant time step, exponential time step 등의 조건을 바꿔가며 선택할 수 있도록 하고 있습니다.
+규칙에 맞춰 코드를 작성하면 시뮬레이션에 필요한 input parameter들도 알려주고, 시뮬레이션에서 얻어낸 데이터 값을 읽어 분석하는 것도 한번에 구현할 수 있습니다.
 
 [^1]: [https://github.com/key262yek/rts](https://github.com/key262yek/rts)
 
@@ -42,7 +42,9 @@ construct_dataset!(SimulationData,
 ~~~
 
 위 macro는 시뮬레이션의 데이터 파일들을 분류하기 위한 기준 configuration이 무엇인지 정해주는 macro입니다. 
-즉, 시스템 크기, 시스템 차원, 목표 크기, 입자 수, 입자의 크기, 상호작용의 세기, 시뮬레이션의 최소 길이 단위, 최대 길이 단위, 길이 단위가 변화하는 주기가 같다면 같은 시뮬레이션이고, 같은 조건의 시뮬레이션들끼리는 idx_set으로 구분할 수 있도록 되어있단 의미입니다.
+예를 들어, 시스템을 연속적인 원형공간으로 정한 순간, 시스템의 차원과 크기는 서로 다른 시스템을 구분할 정보가 될 것입니다. 
+시스템 크기, 차원, 목표의 크기, 입자 수, 입자의 크기, 상호작용의 세기, 시뮬레이션 시간간격의 최소 길이, 최대 길이, 길이 단위가 변화하는 주기가 같다면 같은 시뮬레이션이고, 같은 조건의 시뮬레이션들끼리는 idx_set으로 구분해 병렬적으로 시뮬레이션 데이터를 쌓을 수 있도록 합니다.
+이러한 변수들은 시스템 설정이 정해지면 자동으로 정해지는 값들입니다. 
 
 ~~~ rust
 setup_simulation!(args, 15, 1, TimeAnalysis, 
@@ -55,8 +57,9 @@ setup_simulation!(args, 15, 1, TimeAnalysis,
 위 macro는 시뮬레이션에서 필요한 argument를 실제로 parsing하는 macro입니다.
 argument들은 system, target, searcher, time, simulation 정보들이 바뀌면 알아서 바뀌게 되는데, 필요한 정보가 딱 맞춰 입력되지 않으면 에러를 출력하며 필요 정보에 대한 리스트를 제공해줍니다.
 
-또 TimeAnalysis는 이 시뮬레이션이 특정한 시간 하나를 측정하고 이를 분석하는 시뮬레이션이란 의미라, 그에 맞는 Analysis 함수를 미리 설정해줍니다.
-argument 입력할 때 analysis에 필요한 정보 수에 맞춰 입력하면 알아서 analysis 모드로 코드가 돌아가게 됩니다.
+또 TimeAnalysis는 이 시뮬레이션이 특정한 시간 하나를 측정하고 이를 분석하는 시뮬레이션이란 의미입니다. 
+Ensemble 하나당 하나의 시간이 측정될 것이므로 데이터 파일을 읽어 한 줄 당 하나의 시간 값을 읽어, 데이터의 평균값, 표준편차, histogram등을 연산해줍니다. 
+argument 입력할 때 시뮬레이션에 필요한 인수들이 아니라 analysis에 필요한 인수에 맞춰 입력하게 되면, 자동으로 analysis 모드로 실행됩니다.
 
 ~~~ rust
 let sys_size    = sys_arg.sys_size;
@@ -81,7 +84,7 @@ let seed        = sim_arg.seed;
 let output_dir  = sim_arg.output_dir.clone();
 ~~~
 
-만약 argument들이 시뮬레이션 모드로 잘 입력되었다면, 그 argument들은 각각 somthing_arg 변수들에 저장되고, 이로부터 필요한 정보들을 읽어 시뮬레이션에 써먹을 수 있습니다.
+만약 argument들이 시뮬레이션 모드로 잘 입력되었다면, 그 argument들은 각각 {somthing}_arg 꼴의 구조체에 저장되고 이로부터 필요한 field들을 읽어 시뮬레이션에 써먹을 수 있습니다.
 
 ~~~ rust
 export_simulation_info!(dataset, output_dir, writer, WIDTH, 
@@ -94,7 +97,7 @@ export_simulation_info!(dataset, output_dir, writer, WIDTH,
 ~~~
 
 마지막으로 이 macro는 argument들로부터 시뮬레이션에 필요한 변수들을 선언하는 macro입니다.
-시스템, 목표, 입자들의 리스트, time iterator 등을 정의해주고 본격적으로 시뮬레이션에서 사용될 수 있도록 합니다.
+시스템, 목표, 입자들의 리스트, time iterator 등을 정의해 본격적으로 시뮬레이션에 사용할 수 있도록 합니다.
 
 문제는 이 과정들이 시스템 정보들이 결정되면 거의 달라질 부분이 없단 점입니다.
 이 모든 것이 하나의 macro로 묶일 수 있단 것이고, 그렇다면 복잡한 방식으로 시뮬레이션 코드를 작성할 필요가 사라지게 됩니다.
@@ -109,7 +112,7 @@ simulation!("RTS_N_PTL_EXP_SEARCHER", TimeAnalysis,
 ### Problems - Hygienic, Eager macro 
 
 이런 macro의 내부에는 ContCircSystem이란 identifier가 들어오면, 이에 대응되는 token tree `ContCircSystem, sys_arg, ContCircSystemArguments, [sys_size, f64, dim, usize]`를 construct_dataset macro에 전달해주는 부분이 들어가야합니다.
-이걸 macro로 해결하고 싶지만, 그럴 수 없습니다. 
+이걸 기존에 사용하던 macro로 해결하고 싶지만 그리 단순하지 않습니다. 
 만약 token_tree 라는 macro를 통해 argument를 적을 수 있도록 하더라도 macro 결과물로 나오는 변수들은 hygienic한 값으로 적힐 것이기 때문에, macro 밖의 코드에서 같은 이름으로 접근할 수 없습니다.
 우선 hygienic부터 해결해야겠지만, 이를 해결해도 문제는 남습니다.
 왜냐하면 rust의 macro는 기본적으로 lazy-macro이기 때문입니다. 
@@ -123,19 +126,20 @@ construct_dataset!(token_tree!(ContCircSystem), ... );
 이런 작동 방식을 Eager macro라고 하는데, 안타깝게도 rust에서는 몇몇 특수한 경우들을 제외하고는 모두 밖에서부터 macro를 수행하는 lazy macro를 따르고 있습니다. 
 
 두 개의 문제를 모두 해결하지 못하기 때문에, macro 안에 macro를 적는 방법은 해법이 될 수 없습니다.
-답이 없는 줄 알았으나, macro 안에서 macro 선언을 할 수 있으면서도, unhygienic token을 임의로 정의할 수 있는 방법이 있었습니다.
+여기까지 알게 됐을 때 다른 답이 없는 줄 알고 포기하고자 했습니다.
+하지만 좀 더 찾아보니 macro 안에서 macro 선언을 할 수 있으면서도, unhygienic token을 임의로 정의할 수 있는 방법이 있었습니다.
 그것이 **Procedural Macros**입니다. 
 
 ### Solution - Procedural Macros
 
-Procedure macros에 대한 설명은 [the book](https://doc.rust-lang.org/reference/procedural-macros.html)[^2]과 [blog](https://taeguk2.blogspot.com/2019/02/rust-procedural-macros-by-example.html)[^3]를 참고하면 되는데, 여기서는 Procedural macro 중에서 **Function-like macro**를 이용할 것입니다.
+Procedure macros에 대한 설명은 [the book](https://doc.rust-lang.org/reference/procedural-macros.html)[^2]과 [blog](https://taeguk2.blogspot.com/2019/02/rust-procedural-macros-by-example.html)[^3]를 참고하면 되는데, 여기서는 Procedural macro 중에서도 **Function-like macro**를 이용할 것입니다.
 
 [^2]: [https://doc.rust-lang.org/reference/procedural-macros.html](https://doc.rust-lang.org/reference/procedural-macros.html)
 [^3]: [https://taeguk2.blogspot.com/2019/02/rust-procedural-macros-by-example.html](https://taeguk2.blogspot.com/2019/02/rust-procedural-macros-by-example.html)
 
 Rust의 일반 함수처럼 macro를 짤 수 있는 방법인데, compile time에서 함수가 호출되어 컴파일될 코드를 작성해주는 macro입니다.
-지금의 계획은 identifier를 입력하면, 각 매크로에 넣을 token tree를 출력해주는 macro와 
-이 token tree들을 받아 실제로 코드로 만들어줄 macro, 두 종류의 macro를 작성하고자 합니다.
+지금의 계획은 identifier를 입력하면 기존 macro에 전달할 token tree를 출력하는 macro,  
+그리고 이 token tree들을 받아 기존 macro를 실행해 시뮬레이션 코드를 간단히 만들어줄 macro, 두 종류의 macro를 작성하고자 합니다.
 
 #### create new crate
 
@@ -165,7 +169,7 @@ syn="1.0"
 
 그 다음엔 identifier를 받아 parsing하는 함수를 사용하는 방법을 알아야합니다.
 procedural macro 내부에서 token들은 주로 [syn](https://docs.rs/syn/1.0.72/syn/index.html)[^5] crate를 통해 다룹니다.
-syn crate을 통해 parse trait을 사용할 수 있기 때문에 이를 이용해 input identifier를 parsing 해봅니다.
+syn crate의 parse trait을 이용해 input identifier를 parsing 해봅니다.
 
 [^5]: ["https://docs.rs/syn/1.0.72/syn/index.html"](https://docs.rs/syn/1.0.72/syn/index.html)
 
@@ -431,10 +435,11 @@ pub fn proc_export_simulation_info(&self) -> proc_macro2::TokenStream{
 
 #### Declare variables
 
-여기까지 만들어야하는가 가장 고민되는 지점이긴 합니다.  
+다음은 argument로 받은 값들을 자동으로 변수로 선언해주는 macro입니다. 
+여기까지 만들어야하는가 가장 고민되는 지점이었습니다.
 변수 선언을 macro에 넣어놓으면 어떤 변수가 있는지 코드를 보고서는 확인할 수 없습니다.
-하지만 현재도 시뮬레이션이 작동하기 위해서 어떤 argument를 입력해야하는지도 코드를 돌려봐야알고,  과정에서 정의되는 변수들을 어차피 확인할 수 있게 됩니다. 
-따라서 개인적인 편의를 위해 이 부분도 macro 에 넣기로 결정했습니다.
+하지만 현재도 시뮬레이션이 작동하기 위해서 어떤 argument를 입력해야하는지도 코드를 돌려봐야알고, 따라서 이 과정을 따라가다보면 어떤 변수들이 정의되는지 어차피 확인할 수 있게 됩니다. 
+개인적인 편의를 위해 이 부분도 macro 에 넣기로 결정했습니다.
 
 기본적인 방법은 동일합니다.
 identifier에 대응되는 field명들을 list로 받고, 다시 독립적인 변수로 선언해주면 될 것입니다.
