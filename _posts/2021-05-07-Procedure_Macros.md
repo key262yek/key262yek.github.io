@@ -14,11 +14,11 @@ toc_icon: "fas fa-clipboard-list"
 toc_sticky: true
 ---
 
-제 Github에는 [rts](https://github.com/key262yek/rts)[^1]라는 repository가 있습니다.
+제 Github에는 [rust_rts](https://github.com/key262yek/rust_rts)[^1]라는 repository가 있습니다.
 Random Target Search 시뮬레이션을 위해서 다양한 System, Target, Searcher들을 구현할 수 있고, 나아가 Time iterator를 constant time step, exponential time step 등의 조건을 바꿔가며 선택할 수 있도록 하고 있습니다.
 규칙에 맞춰 코드를 작성하면 시뮬레이션에 필요한 input parameter들도 알려주고, 시뮬레이션에서 얻어낸 데이터 값을 읽어 분석하는 것도 한번에 구현할 수 있습니다.
 
-[^1]: [https://github.com/key262yek/rts](https://github.com/key262yek/rts)
+[^1]: [https://github.com/key262yek/rust_rts](https://github.com/key262yek/rust_rts)
 
 문제는 이 '규칙'이란 것이 매우 복잡하단 것입니다. 
 예를 들어, **연속적인 2D 원형 공간**의 중심에 **원형 목표**를 두고, **Lennard Jones 상호작용을 하는 탐색자**들의 목표 탐색을 **exponential time step**으로 시뮬레이션해 **Mean First Passage Time(MFPT)**을 측정, 분석하는 코드를 작성하고자 한다했을 때, 
@@ -109,7 +109,7 @@ simulation!("RTS_N_PTL_EXP_SEARCHER", TimeAnalysis,
         ExponentialStep, VariableSimulation);
 ~~~
 
-### Problems - Hygienic, Eager macro 
+## Problems - Hygienic, Eager macro 
 
 이런 macro의 내부에는 ContCircSystem이란 identifier가 들어오면, 이에 대응되는 token tree `ContCircSystem, sys_arg, ContCircSystemArguments, [sys_size, f64, dim, usize]`를 construct_dataset macro에 전달해주는 부분이 들어가야합니다.
 이걸 기존에 사용하던 macro로 해결하고 싶지만 그리 단순하지 않습니다. 
@@ -130,7 +130,7 @@ construct_dataset!(token_tree!(ContCircSystem), ... );
 하지만 좀 더 찾아보니 macro 안에서 macro 선언을 할 수 있으면서도, unhygienic token을 임의로 정의할 수 있는 방법이 있었습니다.
 그것이 **Procedural Macros**입니다. 
 
-### Solution - Procedural Macros
+## Solution - Procedural Macros
 
 Procedure macros에 대한 설명은 [the book](https://doc.rust-lang.org/reference/procedural-macros.html)[^2]과 [blog](https://taeguk2.blogspot.com/2019/02/rust-procedural-macros-by-example.html)[^3]를 참고하면 되는데, 여기서는 Procedural macro 중에서도 **Function-like macro**를 이용할 것입니다.
 
@@ -141,7 +141,7 @@ Rust의 일반 함수처럼 macro를 짤 수 있는 방법인데, compile time�
 지금의 계획은 identifier를 입력하면 기존 macro에 전달할 token tree를 출력하는 macro,  
 그리고 이 token tree들을 받아 기존 macro를 실행해 시뮬레이션 코드를 간단히 만들어줄 macro, 두 종류의 macro를 작성하고자 합니다.
 
-#### create new crate
+### create new crate
 
 먼저 해야할 일은 새 library crate를 만드는 것입니다.
 Procedural macro는 macro를 사용할 crate와 다른 crate에서 선언되어야 하는데요.
@@ -165,7 +165,7 @@ syn="1.0"
 [^4]: [https://github.com/key262yek/rts_proc](https://github.com/key262yek/rts_proc)
 
 
-#### Parsing identifier
+### Parsing identifier
 
 그 다음엔 identifier를 받아 parsing하는 함수를 사용하는 방법을 알아야합니다.
 procedural macro 내부에서 token들은 주로 [syn](https://docs.rs/syn/1.0.72/syn/index.html)[^5] crate를 통해 다룹니다.
@@ -198,7 +198,7 @@ fn main(){
 ~~~
 ![실행파일1](/assets/images/20210507_proc_macro_1.png)
 
-#### Parsing complex input
+### Parsing complex input
 
 하지만 한 개의 identifier만 parsing하는 것으로는 우리가 원하는 복잡한 구조의 macro를 만드는데 부족합니다. 
 우리가 원하는 것은 아래와 같은 매크로를 선언하는 것이므로, parsing도 이에 맞춰 정의해두는 것이 좋습니다. 
@@ -294,7 +294,7 @@ fn main(){
 ~~~
 ![실행파일3](/assets/images/20210507_proc_macro_3.png)
 
-#### Matching identifier
+### Matching identifier
 
 이젠 parsing한 identifier를 matching해 case by case별로 token tree를 다르게 만들어줘야합니다. 
 이를 위해 identifier의 match 코드를 확인해봅니다. 
@@ -343,7 +343,7 @@ fn main(){
 ~~~
 ![실행파일2](/assets/images/20210507_proc_macro_2.png)
 
-#### Construct Token Tree
+### Construct Token Tree
 
 그 다음 해야할 일은 받아낸 identifier와 match를 이용해 token tree를 만드는 것입니다. 
 `ContCircSystem`을 argument로 보내면, `ContCircSystem, sys_arg, ContCircSystemArguments, [sys_size, f64, dim, usize]`가 결과로 나오는 함수가 필요합니다. 
@@ -433,7 +433,7 @@ pub fn proc_export_simulation_info(&self) -> proc_macro2::TokenStream{
 }
 ~~~
 
-#### Declare variables
+### Declare variables
 
 다음은 argument로 받은 값들을 자동으로 변수로 선언해주는 macro입니다. 
 여기까지 만들어야하는가 가장 고민되는 지점이었습니다.
@@ -521,7 +521,7 @@ pub fn simulation(input: proc_macro::TokenStream) -> proc_macro::TokenStream{
 }
 ~~~
 
-### Closing
+## Closing
 
 물론 macro를 외부에서 사용하도록 crate를 구성했단 면에서 제작자 외에는 (심지어는 제작자도 시간이 지나면 어떨지...) 사용성이 매우 떨어지는 crate임에는 분명한 것 같습니다.
 개별 시뮬레이션이 아닌 좀 더 다양한 경우를 포괄할 수 있는 구조로 crate를 짜고자 했는데, 편의성을 담보하기 위해 사용했던 macro가 결국 끝에와서 이렇게 발목을 잡네요.
