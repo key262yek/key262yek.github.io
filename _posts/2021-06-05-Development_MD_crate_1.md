@@ -55,6 +55,8 @@ Continuous system, Lattice, Complex network, 그리고 lane과 같이 서로 다
 Continuous system은 각 점을 중심으로 하는 open ball이 neighbor가 되는 topology를 가지고 있고,
 Lattice나 complex network는 각 node와 연결된 node들이 neighbor가 될 것입니다.
 여러 시스템이 결합된 새 시스템의 neighbor는 product topology로 neighbor를 정의할 수 있습니다.
+
+#### Point, Neighbor
 Continuous system에서 neighbor를 정의하는게 무슨 의미가 있냐고 물을 수 있습니다.
 이는 다른 시스템에서 neighbor가 어떤 의미를 가지는지 생각해보면 명확합니다.
 이산적 시스템에서 neighbor는 '한 번에 이동할 수 있는 점'을 지칭합니다.
@@ -86,6 +88,7 @@ if new_pos in nb{
 }
 ```
 
+#### Product Topology
 시스템간의 결합은 어떻게 정의할 수 있을까 고민해봅니다.
 서로 다른 구조들이 tuple로 묶여 다시 Neighbor와 Point를 구성해야하는데,
 이 부분은 아래와 같은 형태로 generic type을 이용해 구현할 수 있으리라 생각이 듭니다.
@@ -127,7 +130,7 @@ trait BoundaryCondition{
 
 그렇다면 Boundary trait은 시뮬레이션에서 아래와 같이 사용될 것입니다.
 ``` rust
-enum BoundaryCondition{
+enum BC{
   ABC,
   PBC,
   RBC,
@@ -136,7 +139,7 @@ enum BoundaryCondition{
 
 let point = ... ;
 let movement = ... ;
-let bcs : Vec<BoundaryCondition> = ... ;
+let bcs : Vec<BC> = ... ;
 
 for bc in bcs{
   if bc.correction(pos, move){
@@ -155,11 +158,12 @@ for bc in bcs{
   m \dv{\vb{v}}{t} = \vb{F}  + \xi
 \end{align}
 따라서 속도 변화를 추론하기 위한 외력항과 random force를 계산할 수 있어야합니다.
+
+#### External force
 외력에는 중력, 자기장과 같은 global potential 혹은 저항력처럼 단일 입자의 운동 정보로만 구할 수 있는 경우와, 두 입자간 상호작용처럼 둘의 상대적인 운동 정보로 구할 수 있는 경우, 두 가지로 나뉩니다. 
 그리고 random force의 경우에는 Gaussian을 따르는 white noise도 있을 수 있지만,
 (force는 아니지만) run and tumble에서 방향을 결정하는 무작위 변수는 균등 분포를 따르고,
 또 levy walk의 경우에는 이동시간이나 속도가 power-law distribution을 따르도록 할 수 있습니다. 
-
 따라서 force computation에서 정의되어야 하는 함수들은
 ```rust
 fn single_ptl_force(ptl : &Particle) -> Force;
@@ -172,6 +176,7 @@ fn double_ptl_force(ptl1 : &Particle, ptl2 : &Particle) -> Force;
 Force는 이후 Movement를 계산하는 도구로써 역할하는데, 연속적인 공간에서는 위치벡터와 동일하게 벡터일 수 있지만, network 등에서는 위치벡터와 얼마든지 다른 구조를 가질 수 있습니다.
 이는 Movement에서 함수의 인자로 사용될 것입니다.
 
+#### Random force
 random force에 필요한 분포들은
 ```rust
 fn uniform(min : f64, max : f64) -> f64;
@@ -180,7 +185,13 @@ fn power_law(coeff : f64, exponent : f64) -> f64;
 ```
 등의 기능들이 필요할 것이라 예상됩니다.
 
-
+#### Force trait
+이렇게 force항이 여러 개로 나뉠 수 있으니 Force는
+``` rust
+trait Force{};
+impl(F : Force) Force for (F, F){};
+```
+꼴로 정리해 쓸 수 있도록 해야겠습니다. 
 
 ### Movement
 
@@ -190,6 +201,8 @@ Movement는 기본적으로 위치정보, 속도정보, 시간간격, 작용한 
 어떤 방법론으로 근사할지 선택할 수 있도록 여러 함수들을 구현해놓는 것이 필요할 것입니다.   
 
 그 이전에 위치 정보, 속도 정보, 시간 간격, 힘에 해당하는 trait과 movement trait이 가져야할 기능들을 따져 구현해봅시다. 
+
+#### State trait
 먼저 위치 정보와 속도 정보를 담는 State trait부터 살펴봅시다. 
 State trait은 Movement trait 구조를 인자로 받아 상태를 새로 고치는 기능이 필요합니다. 
 ```rust
@@ -197,6 +210,8 @@ trait State{
   fn move_to(&mut self, mov : &Movement); 
 }
 ```
+
+#### Time iterator trait
 시간 간격은 iterator로써 구현되면 좋습니다.
 시뮬레이션에서는 경우에 따라 초반부 변화가 중요할 수 있습니다.
 그런 경우에는 초반에 매우 작은 시간간격으로 시뮬레이션하다가, 점차 시간간격을 키워나가는 방식으로 시뮬레이션 할 수 있습니다. 
@@ -211,7 +226,18 @@ impl Iterator for TimeIterator{
 }
 ```
 이 방법은 상황에 따라 다양한 구조로 쓰여질 수 있습니다.
-예를 들어 run and tumble하는 입자들 같은 경우에는 무작위적으로 주어진 
+예를 들어 run and tumble하는 입자들 같은 경우에는 무작위적으로 주어진 시간동안 직진하는 운동을 할텐데, 이런 경우 time iterator는 입자가 운동방향을 바꾸는 가장 가까운 시점을 출력하는 방법으로 시뮬레이션 할 수 있습니다. 
+```rust
+impl Iterator for MinTimeIterator{
+  type Item = f64;
+  
+  fn next(&mut self) -> Option<Self::Item>{
+    return Some(self.times.pop());
+  }
+}
+```
+
+#### Movement trait
 
 이런 관점에서 Movement trait은 아래와 같은 기능을 제공할 것입니다.
 ``` rust
@@ -273,6 +299,7 @@ fn main(){
   ...
 }
 ```
+#### Analysis trait
 
 여기서 아직 설명되지 않은 부분은 Analysis trait 부분입니다. 
 Analysis trait은 크게 두 가지 일을 합니다.
@@ -315,6 +342,7 @@ fn analyze(&self){
 - Data : 어떤 형태의 데이터를 분석하려고 하는지
 - Method : 데이터를 어떤 식으로 분석할 것인지
 
+#### Config trait
 Config는 시뮬레이션을 만드는 시점에 정의될 것이고,
 Data나 Method는 미리 정의되어있어야 합니다.
 그럼으로 우리에게 필요한 것은 Config를 쉽게 정의할 수 있도록 하는 가이드와
@@ -340,6 +368,7 @@ impl<T : Config> Config for (T, T){
 }
 ```
 
+#### Data structure, Method trait
 그리고 Data는 몇 개 변수로 이뤄져있는지, 혹은 process와 같이 변수의 나열로 이뤄져있는지 등을 나누고, 그에 맞는 method를 정의해주면 되겠습니다.
 ```rust
 struct SingleVariable;
@@ -360,10 +389,83 @@ impl Histogram for SingleVariable{
 시뮬레이션을 하는 과정에서 속도를 높일 수 있는 많은 방법들이 있습니다. 
 그 중 몇 개는 필히 만들어두고 싶습니다.
 
-#### Verlet list / Cell method
+#### Verlet list
+Verlet list는 Short range force computation을 가속할 때 주로 쓰이는 방법입니다. 
+먼 거리의 입자들에게는 어차피 상호작용의 세기가 매우 미미할 것이기 때문에 일정 거리 이하로 가까운 입자들만 추려 상호작용을 계산할 수 있도록 합니다. 
+입자들의 상호작용을 무시할 수 있는 cut-off distance를 $R_c$라 하고, 
+시뮬레이션 한 스텝동안 입자들이 움직이는 최대 거리 $d$,
+Verlet list를 수정하는 주기를 $n$ step이라 했을 때 Verlet list은 입자 주변의 $R_c + 2nd$ 거리에 있는 입자들로 구성하면 됩니다. 
+아마 구성은 아래와 같을 것입니다.
+``` rust
+trait<T : Point> VerletList for LinkedList<T>{
+  fn renew(&self, verlet : Vec<LinkedList<T>>, rc : f64){
+    verlet.clean();
+    for (idx1, agent1, idx2, agent2) in self.pair_enumerate(){
+      if agent1.distance(agent2) < rc{
+        verlet[idx1].push(idx2);
+        verlet[idx2].push(idx1);
+      }
+    }
+  }
+}
+
+// Body
+for idx, agent in agent_list.enumerate(){
+  for agent2 in verlet[idx]{
+    // force computation
+  }
+}
+```
+
+#### Cell method
+Verlet list와 비슷한 컨셉으로 시뮬레이션을 가속하는 방법입니다.
+이건 입자들을 기준으로 하는 것이 아니라 시스템을 잘게 쪼갠 cell을 기준으로 하는겁니다. 
+Cell의 크기를 $R_c$의 2배 정도로 하고, 거리 계산을 할 때는 같은 cell에 있는 입자들과, 인접한 cell들에 있는 입자들끼리만 고려하는 방식으로 먼 거리의 입자들을 생략하는 방식입니다.
+이 경우, cell에 속해있는 입자들을 renew하는 주기 $n$을 $R_c > 2 n d$ 조건을 만족하도록 잡아주면 됩니다.
+``` rust
+trait<T : Point> CellList for LinkedList<T>{
+  fn renew(&self, cells : Vec<LinkedList<T>>, rc : f64){
+    cells.clean();
+    for agent in self.iter(){
+      cell_idx = agent.cell();
+      cells[cell_idx].push(agent);
+    }
+  }
+}
+
+// Body
+for cell in cell_list{
+  for agent in cell{
+    for other_agent in cell{
+      // force computation
+    }
+    
+    for other_agent in adjacent_cell{
+      // force computation
+    }
+  }
+}
+```
 
 #### Higher order approximation
+Newton의 운동방정식을 가장 간단히 근사하는 방법은 first order approximation일 것입니다.
+\begin{align}
+  x(t + \dd t) &= x(t) + v(t + \dd t) \dd t + \frac{1}{2} \frac{F(x,t)}{m} \dd t^2, \newline
+  v(t + \dd t) &= v(t) + \frac{F(x,t)}{m} \dd t 
+\end{align}
+Overdamped Langevin equation
+\begin{align}
+  \dv{x}{t} = - \mu F(x,t) + \sqrt{2 D} \xi
+\end{align}
+의 1차 근사해는 아래처럼 쓰이구요.
+\begin{align}
+  x(t + \dd t) = x(t) - \mu F(x, t) \dd t + \sqrt{2 D \dd t }Z, \quad
+  Z \sim N(0,1)
+\end{align}
 
+하지만 이들의 근사식은 이런 것만 있는 것은 아닙니다.
+보다 Higher order로 결과를 근사하는 방법들이 얼마든지 있을 수 있습니다.
+이런 경우까지 충분히 포괄해 문제를 해결할 수 있으면 좋겠습니다. 
 
 ### Macro
 
