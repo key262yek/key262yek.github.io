@@ -114,7 +114,7 @@ def lambda_handler(event, context):
         # dynamodb에 쓴다.
         # 만약 DB에 존재하는 primary key라면 Item을 업데이트하는 역할을 합니다. 
         response = db.put_item(
-            TableName='da_staff',
+            TableName='{Table Name}',
             Item= {
                 'phone':{'S':phone},
                 'name':{'S':name},
