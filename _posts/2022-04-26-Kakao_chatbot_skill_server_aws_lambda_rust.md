@@ -212,8 +212,27 @@ def return_data_api(phone):
         }
 ```
 스킬에서 데이터를 전달하는 경우도 있지만 여기서는 인증의 성공, 실패 결과만 전달해주면 되기 때문에 위와 같은 응답으로도 인증이 잘 작동합니다. 
-이런 함수들을 종합해 전체 코드는 맨 앞과 같이 쓰입니다.
+이런 함수들을 종합해 전체 코드는 아래와 같이 쓰입니다.
+```python 
+import json
+import boto3
+import urllib3
 
+def lambda_handler(event, context):
+    otp = parse_userinfo_api(event)
+    name, phone = get_user_info(otp)
+    return return_data_api(phone)
+
+def parse_userinfo_api(event):
+    # ...
+    
+def return_data_api(phone):
+    # ...
+    
+
+def get_user_info(otp_url):
+    # ... 
+```
 
 ### Cold start 문제 - Rust로 변환
 Python으로도 함수가 잘 기능하긴 하지만 한가지 꽤 큰 문제가 있었습니다. 
