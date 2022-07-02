@@ -12,7 +12,7 @@ toc_icon: "fas fa-clipboard-list"
 toc_sticky: true
 ---
 
-Rust에는 [Clap](https://docs.rs/clap/latest/clap/index.html)이라는 crate가 있어 Argument를 보다 깔끔하게 정의하고, help document를 만들어주며 parsingRkwㅣ 도와준다. 
+Rust에는 [Clap](https://docs.rs/clap/latest/clap/index.html)이라는 crate가 있어 Argument를 보다 깔끔하게 정의하고, help document를 만들어주며 parsing까지 도와준다. 
 Argument parsing의 중심에는 `get_one()`이란 함수가 있는데, input string에서 boolean, usize 등의 자료형으로 변환하는데 도움을 준다. 
 하지만 내 코드에서는 이유를 모르겠는 panic이 하나 나타난다. 
 이 글은 바로 그 에러의 원인을 찾고 해결하는 과정을 담아본다. 
