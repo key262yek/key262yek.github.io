@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "Myeongseon Choi"
   avatar           : "/assets/images/new_bio_photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Statistical Physics, Programming, Feminism, Queer, Education"
+  bio              : "Statistical Physics, Programming, Diversity, Education, Beverage"
   location         : "Daejeon, Korea"
   # email            : "key262yek@gmail.com"
   links:
@@ -112,12 +112,12 @@ author:
     # - label: "Twitter"
     #  icon: "fab fa-fw fa-twitter-square"
     #  url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://www.facebook.com/myeongseon.choi.338"
+#     - label: "Facebook"
+#       icon: "fab fa-fw fa-facebook-square"
+#       url: "https://www.facebook.com/myeongseon.choi.338"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/hopper_joy"
+      url: "https://www.instagram.com/tea_inlab"
 
 # Site Footer
 footer:
