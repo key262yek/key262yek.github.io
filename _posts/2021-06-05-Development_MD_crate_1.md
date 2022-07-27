@@ -1,5 +1,5 @@
 ---
-title: "Crate development - Planning I"
+title: "Crate development - Planning"
 date: 2021-06-05T21:35:30-22:00
 categories:
   - Programmings
@@ -484,5 +484,5 @@ struct Agent{
 
 ## Docs.rs 
 이 모든 내용을 개발하는 과정에서 충분히 comment를 달아 docs.rs 문서를 추후에 다시 만들 일을 줄일 수 있으면 좋겠습니다.
-[가이드](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)를 참고하여 잘 작성해봅시다. 
+[매뉴얼](https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html)과 [블로그](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)를 참고하여 잘 작성해봅시다. 
 
