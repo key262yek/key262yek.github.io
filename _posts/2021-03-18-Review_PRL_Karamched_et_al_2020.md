@@ -1,5 +1,5 @@
 ---
-title: "집단내 다양성이 결정의 속도와 정확성에 주는 영향"
+title: "집단내 다양성이 결정의 속도와 정확성에 주는 영향(Unfinished)"
 date: 2021-03-18T2:35:30-04:00
 categories:
   - Statistical Physics
@@ -75,7 +75,7 @@ toc_sticky: true
 $i$번째 의사결정자가 시간 t 동안 관찰한 정보들을 $\xi_{1:t}^i$라 했을 때, 신뢰도는 그 정보를 기반으로 두 선택지(논문에서는 $H^+$와 $H^-$로 표기) 각각이 옳을 확률의 비율의 로그값으로 정의했는데요.
 
 \begin{equation}
-    y_i(t) = log(P(H^+ | \xi_{1:t}^i) / P(H^- | \xi_{1:t}^i))
+    y_i(t) = \log\qty[\frac{P(H^+ | \xi_{1:t}^i)}{P(H^- | \xi_{1:t}^i)}]
     \label{eq: definition of belief}
 \end{equation}
 
@@ -105,6 +105,7 @@ $i$번째 의사결정자가 시간 t 동안 관찰한 정보들을 $\xi_{1:t}^i
 \begin{equation}
     y_n \equiv \log \qty[\frac{ P(H^+ | \xi_{1:n})}{ P(H^- | \xi_{1:n})}]
     = y_{n-1} + \log \qty[ \frac{P(\xi_n | H^+)}{P(\xi_n | H^-)} ]
+    \label{eq : recursion of belief}
 \end{equation}
 
 즉, 신뢰도는 확률변수들의 합으로 표현됩니다.
@@ -199,6 +200,7 @@ $N$이 무한대로 가는 극한에서 숫자 버림은 큰 의미가 없을 �
 따라서 연속 확률과정 $y(t)$는 분포의 관점에서 아래의 결과에 수렴합니다.
 \begin{equation}
     y(t) \rightarrow \log\qty[\frac{P(H^+)}{P(H^-)}] + g t + \rho W(t)
+    \label{eq : result of donker's thm}
 \end{equation}
 
 이 증명에서 가장 중요한 파트는 Donsker's theorem을 쓸 수 있도록 하는 연속적인 정보제공 가정입니다. 
@@ -216,9 +218,56 @@ Drift 항의 계수 $g$는 정의상 아래와 같은 관계식을 만족할텐�
 즉, 선택지에 따라 주어지는 정보가 크게 달라질수록 drift가 크게 나오는 것이죠.
 신뢰도의 정의는 model에 이러한 성격을 담기 위해 정의했다고 볼 수 있습니다.
 
+### 추가적인 가정
 
+Donsker's theorem을 이용해 Langevin equation을 유도하더라도 논문의 식 Eq.(\ref{eq : langevin equation of belief})으로 만들기까지는 추가적인 가정을 필요로 합니다. 
+Eq.(\ref{eq : result of donker's thm})이 Eq.(\ref{eq : langevin equation of belief})의 형태가 되려면 $g$와 $\rho$의 $\alpha$와 $\sqrt{2\alpha}$로 치환될 수 있어야합니다.
+즉, 무작위한 정보제공에 의한 신뢰도의 변화의 평균과 분산이 아래와 같은 명확한 관계 속에 주어져있어야합니다.
+\begin{equation}
+    \rho^2 = 2 g
+\end{equation}
+
+혹은 다른 가정을 통해서도 이와 같은 방정식을 얻을 수도 있습니다.
+물리상황을 시뮬레이션 하는 경우 필요에 의해 이들을 무차원 변수로 바꿔준 후에 다루게 되는데요.
+예를 들어 아래와 같은 Langevin 방정식이 있을 때,
+\begin{equation}
+    \dd x = - \frac{1}{\gamma} \pdv{V}{x} \dd t + \sqrt{2 D} \dd W
+\end{equation}
+시스템이 열적 평형에 있어서 확산계수 $D$가 마찰계수 $\gamma$와 Einstein relation을 만족하는 경우
+\begin{equation}
+    D \gamma = k_B T,
+\end{equation}
+무차원 변수들의 방정식은 아래처럼 정리됩니다.
+\begin{align}
+    x = x_0 \widetilde{x}, \quad
+    t = t_0 \widetilde{t}, \quad
+    V &= k_B T \widetilde{V}, \quad
+    D = \frac{x_0^2}{t_0} \widetilde{D}, \quad
+    \dd W = \sqrt{t_0} \dd {\widetilde{W}} \newline
+    \dd {\widetilde{x}} &= - \widetilde{D}\pdv{\widetilde{V}}{\widetilde{x}} \dd {\widetilde{t}} + \sqrt{2 \widetilde{D}} \dd {\widetilde{W}}
+\end{align}
+따라서, 무차원화 된 외력항 값이 $1$인 경우, Eq.(\ref{eq : result of donker's thm})에서는 $\gamma g$가 $1$에 대응되는 경우에 한해서 
+\begin{equation}
+    \dd {\widetilde{x}} = - \widetilde{D} \dd {\widetilde{t}} + \sqrt{2 \widetilde{D}} \dd {\widetilde{W}}
+\end{equation}
+꼴이 되어 비로소 Eq.(\ref{eq : langevin equation of belief}) 모양을 갖추게 됩니다.
+
+### Social information
+(여기서부터는 $\alpha=1$이고, $H^+$가 참이라 가정)
+
+이렇게 Random walk하는 신뢰도에 따라 의사결정자는 선택 임계값 $\theta$에 도달할 수 있습니다.
+이때 의사결정을 지켜본 다른 의사결정자들은 각자 신뢰도에 어떤 변화를 겪을까요?
+편의상 첫번째 의사결정자가 $H^+$를 선택했다 합시다.
+Eq.(\ref{eq : recursion of belief})에 따르면, 각 선택지 $H^+$와 $H^-$가 참인 경우 주어진 정보의 상황이 벌어질 확률비의 로그값만큼 신뢰도가 변화합니다.
+즉, 우리가 계산해야하는 것은
+\begin{equation}
+    \Delta y = \log \qty[ \frac{P(\textrm{agent 1 chooses }H^+ | H^+)}{P(\textrm{agent 1 chooses }H^+ | H^-)} ]
+\end{equation}
+가 된다.
+이 시점까지 각 의사결정자의 신뢰도는 Eq.(\ref{eq : langevin equation of belief})만을 따르기 때문에, 
 
 
 
 
 ## References
+
