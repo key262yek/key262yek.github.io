@@ -1,6 +1,6 @@
 ---
 title: "How to embed youtube in Github Blog"
-date: 2022-07-31-T14:15:30-14:30
+date: 2022-07-31
 categories:
   - Blog
 tags:
