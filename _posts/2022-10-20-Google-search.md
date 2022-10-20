@@ -19,7 +19,7 @@ Github 블로그의 결과물은 가만히 둔다고 검색되지 않습니다.
 이 글에서는 Github 블로그를 Search console에 등록하는 방법에 대해 기술합니다.
 
 ## Domain? URL?
-<img src="../assets/images/google_search_console.PNG" alt="Goggle search console" width="400"/>
+<img src="https://key262yek.github.io/assets/images/google_search_console.PNG" alt="Goggle search console" width="400"/>
 
 Google search console에 접속하면 위와 같은 창이 뜹니다. 
 우리는 DNS 회사에서 직접 도메인을 구매해 사용하는 것이 아니기 때문에, 오른쪽의 url 접두어 부분에 사이트 주소를 입력하고 계속 버튼을 누릅니다. 
@@ -90,7 +90,7 @@ Sitemap: https://key262yek.github.io/sitemap.yml
 ### register sitemap
 이제 해당 sitemap 파일을 google search console에 등록해주면 됩니다. 
 
-<img src="../assets/images/add_sitemap.PNG" alt="Sitemap" width="400"/>
+<img src="https://key262yek.github.io/assets/images/add_sitemap.PNG" alt="Sitemap" width="400"/>
 
 ### 등록 결과 확인
 바로 사이트 게시물을 검색할 수는 없습니다. 빠르면 일주일, 느리면 한 달까지도 걸리는 것 같은데 기다리고 나면 아래와 같이 검색이 가능합니다. 
