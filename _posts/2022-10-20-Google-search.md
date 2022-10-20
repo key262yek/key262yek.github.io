@@ -1,5 +1,5 @@
 ---
-title: "How to embed youtube in Github Blog"
+title: "Make the blog searchable by Google"
 date: 2022-10-20
 categories:
   - Blog
