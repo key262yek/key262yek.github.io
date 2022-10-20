@@ -9,11 +9,11 @@ title: "About"
 **2018, B.S.** in Physics, Seoul National University  
 
 ## Research Interests
-Stochastic Process: Random target searching with interaction.  
-Optimization problem as a random target search  
-Drug design  
-Feminist philosophies of Science.  
-Knowledge tracing on science education.  
+- Stochastic Process: Random target searching with interaction.  
+- Optimization problem as a random target search  
+- Drug design  
+- Feminist philosophies of Science.  
+- Knowledge tracing on science education.  
 
 ## Publications
 - M.S. Choi and Y. W. Kim,
