@@ -89,6 +89,7 @@ Sitemap: https://key262yek.github.io/sitemap.yml
 
 ### register sitemap
 이제 해당 sitemap 파일을 google search console에 등록해주면 됩니다. 
+
 <img src="../assets/images/add_sitemap.PNG" alt="Sitemap" width="400"/>
 
 ### 등록 결과 확인
