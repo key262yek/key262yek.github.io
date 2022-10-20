@@ -62,39 +62,39 @@ plugins:
 
 따라서 우리는 아래와 같은 파일을 직접 root 디렉토리에 넣으면 됩니다. 
 이때 sitemap.xml의 위치와 이름을 정확하게 robots.txt에 적는 것이 중요합니다. 
-```html
----
-layout: null
----
+```xml
+{% raw %}---{% endraw %}
+{% raw %}layout: null{% endraw %}
+{% raw %}---{% endraw %}
 
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+{% raw %}<?xml version="1.0" encoding="UTF-8"?>{% endraw %}
+{% raw %}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% for post in site.posts %}
-    <url>
-        <loc>{{ site.url }}{{ post.url }}</loc>
-        {% if post.lastmod == null %}
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-        {% else %}
-        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-        {% endif %}
+                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{% endraw %}
+{% raw %}    {% for post in site.posts %}{% endraw %}
+{% raw %}    <url>{% endraw %}
+{% raw %}        <loc>{{ site.url }}{{ post.url }}</loc>{% endraw %}
+{% raw %}        {% if post.lastmod == null %}{% endraw %}
+{% raw %}        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>{% endraw %}
+{% raw %}        {% else %}{% endraw %}
+{% raw %}        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>{% endraw %}
+{% raw %}        {% endif %}{% endraw %}
 
-        {% if post.sitemap.changefreq == null %}
-        <changefreq>weekly</changefreq>
-        {% else %}
-        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
-        {% endif %}
+{% raw %}        {% if post.sitemap.changefreq == null %}{% endraw %}
+{% raw %}        <changefreq>weekly</changefreq>{% endraw %}
+{% raw %}        {% else %}{% endraw %}
+{% raw %}        <changefreq>{{ post.sitemap.changefreq }}</changefreq>{% endraw %}
+{% raw %}        {% endif %}{% endraw %}
 
-        {% if post.sitemap.priority == null %}
-        <priority>0.5</priority>
-        {% else %}
-        <priority>{{ post.sitemap.priority }}</priority>
-        {% endif %}
+{% raw %}        {% if post.sitemap.priority == null %}{% endraw %}
+{% raw %}        <priority>0.5</priority>{% endraw %}
+{% raw %}        {% else %}{% endraw %}
+{% raw %}        <priority>{{ post.sitemap.priority }}</priority>{% endraw %}
+{% raw %}        {% endif %}{% endraw %}
 
-    </url>
-    {% endfor %}
-</urlset>
+{% raw %}    </url>{% endraw %}
+{% raw %}    {% endfor %}{% endraw %}
+{% raw %}</urlset>{% endraw %}
 ```
 
 ```
