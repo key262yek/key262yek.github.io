@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://key262yek.github.io/sitemap.yml
