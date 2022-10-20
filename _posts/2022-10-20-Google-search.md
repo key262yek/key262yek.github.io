@@ -40,7 +40,7 @@ Google search console에 접속하면 위와 같은 창이 뜹니다.
 ### Sitemap.yml
 이제 아래와 같은 파일을 만들어 블로그 root 디렉토리에 넣어줍니다. 
 
-```
+```html
 ---
 layout: null
 ---
