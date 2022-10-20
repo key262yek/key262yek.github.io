@@ -96,8 +96,8 @@ analytics:
 author:
   name             : "Myeongseon Choi"
   avatar           : "/assets/images/new_bio_photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Statistical Physics, Programming, Diversity, Education, Beverage"
-  location         : "Daejeon, Korea"
+  bio              : "Statistical Physics, Drug design, Programming, Diversity, Education, Beverage"
+  location         : "Seoul, Korea"
   # email            : "key262yek@gmail.com"
   links:
     - label: "Email"
