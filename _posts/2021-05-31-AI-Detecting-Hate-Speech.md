@@ -2,9 +2,9 @@
 title: "How can AI detect hate speech(Unfinished)"
 date: 2021-05-31T21:35:30-22:00
 categories:
-  - Programmings
-  - Sociology
+  - Paper review
 tags:
+  - Sociology
   - AI
   - Hate speech
 toc: true

@@ -2,8 +2,9 @@
 title: "집단내 다양성이 결정의 속도와 정확성에 주는 영향(Unfinished)"
 date: 2021-03-18T2:35:30-04:00
 categories:
-  - Statistical Physics
+  - Paper review
 tags:
+  - Statistical Physics
   - Random Target Searching
   - Heterogeneity
   - Bhargav Karamched
