@@ -111,3 +111,5 @@ Sitemap: https://key262yek.github.io/sitemap.yml
 
 ## Result
 바로 사이트 게시물을 검색할 수는 없습니다. 빠르면 일주일, 느리면 한 달까지도 걸리는 것 같은데 기다리고 나면 아래와 같이 검색이 가능합니다. 
+
+<img src="https://key262yek.github.io/assets/images/search_result.png" alt="Search Result" width="400"/>
