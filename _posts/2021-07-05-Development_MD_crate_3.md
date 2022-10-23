@@ -2,7 +2,7 @@
 title: "Crate development - System module II"
 date: 2021-07-05-T21:35:30-22:00
 categories:
-  - Programmings
+  - Programming
   - Statistical Physics
 tags:
   - Simulation

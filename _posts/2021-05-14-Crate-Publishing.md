@@ -2,7 +2,7 @@
 title: "Publish my own rust crate"
 date: 2021-05-08T21:35:30-22:00
 categories:
-  - Programmings
+  - Programming
 tags:
   - Rust
   - Publish

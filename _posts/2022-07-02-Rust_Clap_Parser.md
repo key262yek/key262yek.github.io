@@ -2,7 +2,7 @@
 title: "Resolve a panic when clap's get_one() function downcast f64"
 date: 2022-01-30-T14:15:30-14:30
 categories:
-  - Programmings
+  - Programming
 tags:
   - Rust
   - Clap

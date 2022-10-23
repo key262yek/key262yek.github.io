@@ -2,7 +2,7 @@
 title: "Performance gap between Array and Vector in Rust"
 date: 2022-01-30-T14:15:30-14:30
 categories:
-  - Programmings
+  - Programming
   - Statistical Physics
 tags:
   - Simulation

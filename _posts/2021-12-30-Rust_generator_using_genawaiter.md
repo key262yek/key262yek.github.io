@@ -2,7 +2,7 @@
 title: "Implement generator in Rust using Genawaiter crate"
 date: 2021-12-30-T14:15:30-14:30
 categories:
-  - Programmings
+  - Programming
   - Statistical Physics
 tags:
   - Simulation

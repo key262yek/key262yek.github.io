@@ -2,7 +2,7 @@
 title: "Develop Rust skill server of kakao chatbot on AWS lambda"
 date: 2022-01-30-T14:15:30-14:30
 categories:
-  - Programmings
+  - Programming
 tags:
   - Rust
   - Rest_API
