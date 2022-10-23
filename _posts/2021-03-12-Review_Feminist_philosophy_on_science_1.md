@@ -2,7 +2,7 @@
 title: "Review on Meta-Philosophical Reflection on Feminist Philosophies of Science 1"
 date: 2021-03-12T2:35:30-04:00
 categories:
-  - Paper review
+  - Review
 tags:
   - Feminist Philosophy on Science
   - Meta-Philosophical Reflection on Feminist Philosophies of Science
