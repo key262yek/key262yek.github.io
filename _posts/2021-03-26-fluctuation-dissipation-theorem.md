@@ -1,11 +1,12 @@
 ---
-title: "Fluctuation Dissipation Theorem(Unfinished)"
+title: "Fluctuation Dissipation Theorem"
 date: 2021-03-26T21:35:30-1:00
 categories:
   - Statistical Physics
 tags:
   - Fluctuation Dissipation Theorem
   - R.Kubo
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

@@ -1,5 +1,5 @@
 ---
-title: "암호화폐 과거 거래 데이터 Rust로 크롤링하기(Unfinished)"
+title: "암호화폐 과거 거래 데이터 Rust로 크롤링하기"
 date: 2021-04-05T16:36:30-04:00
 categories:
   - Programming
@@ -7,6 +7,7 @@ tags:
   - Rust
   - Cryptocurrency
   - Crawling
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

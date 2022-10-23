@@ -1,5 +1,5 @@
 ---
-title: "Review on Meta-Philosophical Reflection on Feminist Philosophies of Science 2(Unfinished)"
+title: "Review on Meta-Philosophical Reflection on Feminist Philosophies of Science 2"
 date: 2021-03-16T0:11:30-04:00
 categories:
   - Paper review
@@ -7,6 +7,7 @@ tags:
   - Feminist Philosophy on Science
   - Meta-Philosophical Reflection on Feminist Philosophies of Science
   - Maralee Harrell
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

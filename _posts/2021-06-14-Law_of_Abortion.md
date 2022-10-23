@@ -1,11 +1,12 @@
 ---
-title: "About Abortion Law(Unfinished)"
+title: "About Abortion Law"
 date: 2021-06-05T21:35:30-22:00
 categories:
   - Feminist jurisprudence
 tags:
   - Abortion
   - Constitution
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

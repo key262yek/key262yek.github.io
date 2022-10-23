@@ -1,5 +1,5 @@
 ---
-title: "도로의 제한 속도와 출퇴근 정체구간의 평균 속도 사이 관계(Unfinished)"
+title: "도로의 제한 속도와 출퇴근 정체구간의 평균 속도 사이 관계"
 date: 2021-03-10T14:36:30-04:00
 categories:
   - Paper review
@@ -7,6 +7,7 @@ tags:
   - Social Physics
   - Simulation
   - Statistical Physics
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

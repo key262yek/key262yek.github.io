@@ -1,5 +1,5 @@
 ---
-title: "집단내 다양성이 결정의 속도와 정확성에 주는 영향(Unfinished)"
+title: "집단내 다양성이 결정의 속도와 정확성에 주는 영향"
 date: 2021-03-18T2:35:30-04:00
 categories:
   - Paper review
@@ -10,6 +10,7 @@ tags:
   - Bhargav Karamched
   - Zachary P. Kilpatrick
   - Krešimir Josić
+  - Unfinished
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
