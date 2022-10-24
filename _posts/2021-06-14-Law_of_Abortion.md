@@ -27,6 +27,9 @@ toc_sticky: true
 3. 낙태죄가 여성의 자기결정권을 침해함에 있어 과잉금지의 원칙을 지키고 있는지 여부
 4. 법률적인 영역을 넘어서서, 낙태죄의 존재가 임신중단을 효과적으로 줄일 수 있는지 여부
 
+참고자료  
+[태아의 심장박동과 관련하여]("https://www.factcheck.org/2019/07/when-are-heartbeats-audible-during-pregnancy/?fbclid=IwAR0dKSy-LOfvMn73IvjS9HS1B2PnG_ACwwu0CDyYJb-lBR2UKnJbN7kOHfA")
+
 ## 각 쟁점에 대한 연구결과
 
 
