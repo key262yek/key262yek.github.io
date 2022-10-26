@@ -18,8 +18,7 @@ toc_sticky: true
 소년범죄 중 강력범죄 비율이 2000년 2.62% 수준에서 최근 4.86%로 늘었고,
 소년 강력범죄 중 성범죄 비율이 2000년 36.3%에서 2020년 86.2%로 급증했다는 것을 사유로 들었다. 
 
-[^1]: 신민정 기자, 만 13살부터 형사처벌…법무부, 촉법소년 연령 1년 하향 추진
-, 한겨레, 2022-10-26 [링크](https://www.hani.co.kr/arti/society/society_general/1064312.html)  
+[^1]: 신민정 기자, 만 13살부터 형사처벌…법무부, 촉법소년 연령 1년 하향 추진, 한겨레, 2022-10-26 [링크](https://www.hani.co.kr/arti/society/society_general/1064312.html)  
 
 [^2]: 남소연 기자, 법무부, 촉법소년 연령 '만 14세->13세'로...국가인권위 '반대', 민중의 소리, 2022-10-26 [링크](https://www.vop.co.kr/A00001621857.html?fbclid=IwAR36ZOMiLJduYkzLW164azJAfAxt7ztmAepvmivYZh1pLAxY539dWBViRwg)
 
