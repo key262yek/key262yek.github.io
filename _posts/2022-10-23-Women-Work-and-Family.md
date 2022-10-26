@@ -3,9 +3,9 @@ title: "Book Review : Women, Work and Family Thread"
 date: 2022-10-20
 categories:
   - Review
+  - Sociology
 tags:
   - Feminism
-  - Sociology
   - Unfinished
 toc: true
 toc_label: "Table of Contents"

@@ -2,8 +2,9 @@
 title: "About Abortion Law"
 date: 2021-06-05T21:35:30-22:00
 categories:
-  - Feminist jurisprudence
+  - Sociology
 tags:
+  - Feminist jurisprudence
   - Abortion
   - Constitution
   - Unfinished
