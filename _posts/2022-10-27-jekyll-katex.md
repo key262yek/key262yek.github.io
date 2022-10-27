@@ -1,6 +1,6 @@
 ---
 title: "Jekyll에 KaTex 설치하기"
-date: 2022-10-27
+date: 2022-10-27T10:00:00
 categories:
   - Blog
 tags:
