@@ -1,6 +1,6 @@
 ---
 title: "Lower the age limit of criminal minor"
-date: 2022-10-20
+date: 2022-10-26
 categories:
   - Sociology
 tags:

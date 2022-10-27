@@ -1,6 +1,6 @@
 ---
 title: "Book Review : Women, Work and Family Thread"
-date: 2022-10-20
+date: 2022-10-23
 categories:
   - Review
   - Sociology
