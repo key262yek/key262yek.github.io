@@ -1,5 +1,5 @@
 ---
-title: "Make the blog searchable by Google"
+title: "Enable the google search"
 date: 2022-10-20
 categories:
   - Blog
