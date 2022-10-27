@@ -1,7 +1,5 @@
 source "https://rubygems.org"
 gemspec
 gem "webrick", "~> 1.7"
+gem "mini_racer"
 
-group :jekyll_plugins do
-  gem 'jekyll-katex'
-end

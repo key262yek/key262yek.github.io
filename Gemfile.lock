@@ -20,7 +20,6 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
-    execjs (2.8.1)
     faraday (1.3.0)
       faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
@@ -52,9 +51,6 @@ GEM
       octokit (~> 4.2)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
-    jekyll-katex (1.0.0)
-      execjs (~> 2.7)
-      jekyll (>= 3.6, < 5.0)
     jekyll-paginate (1.1.0)
     jekyll-sass-converter (2.1.0)
       sassc (> 2.0.1, < 3.0)
@@ -66,11 +62,15 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
+    libv8-node (16.10.0.0-x86_64-darwin)
+    libv8-node (16.10.0.0-x86_64-linux)
     liquid (4.0.3)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
+    mini_racer (0.6.3)
+      libv8-node (~> 16.10.0.0)
     multipart-post (2.1.1)
     octokit (4.20.0)
       faraday (>= 0.9)
@@ -102,7 +102,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  jekyll-katex
+  mini_racer
   minimal-mistakes-jekyll!
   rake (>= 12.3.3)
   webrick (~> 1.7)
