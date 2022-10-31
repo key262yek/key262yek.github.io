@@ -109,7 +109,7 @@ author:
       url: "mailto:key262yek@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://statphys.kaist.ac.kr"
+      url: "http://statphys.kaist.ac.kr"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/key262yek"
