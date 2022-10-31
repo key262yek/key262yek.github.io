@@ -6,7 +6,7 @@ categories:
 tags:
   - Fluctuation Dissipation Theorem
   - R.Kubo
-  - Unfinished
+published: false
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

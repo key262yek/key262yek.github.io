@@ -6,7 +6,7 @@ categories:
   - Physics
 tags:
   - Path Integral
-  - Unfinished
+published: false
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
@@ -24,29 +24,29 @@ M. Chaichian and A. Demichev, "Path Integrals in Physics", IOP (2001) [link](htt
 ## Introduction
 
 ## 1. Path integrals in classical theory
-[1.1 Brownian motion]()
-[1.2 Wiener path integrals and stochastic processes]()
+[1.1 Brownian motion]()  
+[1.2 Wiener path integrals and stochastic processes]()  
 
 ## 2. Path integrals in quantum mechanics
-[2.1 Feynman path integrals]()
-[2.2 Path integrals in the Hamiltonian formalism]()
-[2.3 Quantization, the operator ordering problem and path integrals]()
-[2.4 Path integrals and quantization in spaces with topological constraints]()
-[2.5 Path integrals in curved spaces, spacetime transformations and the Coulomb problem]()
-[2.6 Path integrals over anticommuting variables for fermions and generalizations]()
+[2.1 Feynman path integrals]()  
+[2.2 Path integrals in the Hamiltonian formalism]()  
+[2.3 Quantization, the operator ordering problem and path integrals]()  
+[2.4 Path integrals and quantization in spaces with topological constraints]()  
+[2.5 Path integrals in curved spaces, spacetime transformations and the Coulomb problem]()  
+[2.6 Path integrals over anticommuting variables for fermions and generalizations]()  
 
 ## 3. Quantum field theory
-[3.1 Path-integral formulation of the simplest quantum field theories]()
-[3.2 Path-integral quantization of gauge-field theories]()
-[3.3 Non-perturbative methods for the analysis of quantum field models in the path-integral approach]()
-[3.4 Path integrals in the theory of gravitation, cosmology and string theory: advanced applications of path integrals]()
+[3.1 Path-integral formulation of the simplest quantum field theories]()  
+[3.2 Path-integral quantization of gauge-field theories]()  
+[3.3 Non-perturbative methods for the analysis of quantum field models in the path-integral approach]()  
+[3.4 Path integrals in the theory of gravitation, cosmology and string theory: advanced applications of path integrals]()  
 
 ## 4. Path integrals in statistical physics
-[4.1 Basic concepts of statistical physics]()
-[4.2 Path integrals in classical statistical mechanics]()
-[4.3 Path integrals for indistinguishable particles in quantum mechanics]()
-[4.4 Field theory at non-zero temperature]()
-[4.5 Superfluidity, superconductivity, non-equilibrium quantum statistics and the path-integral technique]()
-[4.6 Non-equilibrium statistical physics in the path-integral formalism and stochastic quantization]()
-[4.7 Path-integral formalism and lattice systems]()
+[4.1 Basic concepts of statistical physics]()  
+[4.2 Path integrals in classical statistical mechanics]()  
+[4.3 Path integrals for indistinguishable particles in quantum mechanics]()  
+[4.4 Field theory at non-zero temperature]()  
+[4.5 Superfluidity, superconductivity, non-equilibrium quantum statistics and the path-integral technique]()  
+[4.6 Non-equilibrium statistical physics in the path-integral formalism and stochastic quantization]()  
+[4.7 Path-integral formalism and lattice systems]()  
 
