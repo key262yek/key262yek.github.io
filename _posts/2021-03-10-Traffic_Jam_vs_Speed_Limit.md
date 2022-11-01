@@ -7,7 +7,7 @@ tags:
   - Social Physics
   - Simulation
   - Statistical Physics
-  - Unfinished
+published: false
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
