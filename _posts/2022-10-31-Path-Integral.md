@@ -32,6 +32,8 @@ M. Chaichian and A. Demichev, "Path Integrals in Physics", IOP (2001) [link](htt
 깊게 이해하고 있는 사람들은 2권까지 중 관심이 가는 곳부터 읽으면 된다. 
 
 ## Introduction
+경로적분을 처음 사용한 사람은 1920년대에 확산과 브라운 운동을 연구한 수학자 Norbert Wiener였다. 
+그 후 Feynman이 1940년대에 양자역학을 재구성하면서 이를 발전시켰다. 
 
 ## 1. Path integrals in classical theory
 [1.1 Brownian motion]()  
