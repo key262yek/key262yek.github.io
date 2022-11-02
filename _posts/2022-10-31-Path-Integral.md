@@ -35,6 +35,23 @@ M. Chaichian and A. Demichev, "Path Integrals in Physics", IOP (2001) [link](htt
 경로적분을 처음 사용한 사람은 1920년대에 확산과 브라운 운동을 연구한 수학자 Norbert Wiener였다. 
 그 후 Feynman이 1940년대에 양자역학을 재구성하면서 이를 발전시켰다. 
 
+경로적분은 다음과 같은 성질을 가진다. 
+### Universality
+Stochastic process, Quantum mechanics에서의 전이 확률은 아래와 같은 형태를 띈다. 
+$$
+  W(x_f, t_f | x_0, t_0) \sim \sum_{\textrm{trajectories from } x_0 \textrm{to} x_f} \exp[- \frac{1}{4D} F[x(\tau)]]
+$$
+또한 통계역학과 양자역학에서의 기댓값은 아래와 같은 형태로 정리된다. 
+$$
+  \expval{A} \sim \sum_{configurations} A(\varphi) \exp[- \frac{1}{\hbar} S[\varphi]]
+$$
+통계역학에서는 $\hbar$가 $k_B T$로 바뀌고, Action $S$가 에너지 $E$로 바뀌는 차이일 뿐이다. 
+이 경우, 이들의 단순합은 쉽사리 무한대가 나오기 때문에 이를 해소하는과정이 필요하다. 통계역학에서는 이를 두고 열역학적 극한이라 부르고, 양자장론에서는 재규격화라고 한다. 
+다만 둘은 규격화 방식에 있어 차이가 있는데, 통계역학적 극한은 시스템 크기를 점차 키워가는 방식이라 파장의 상한을 정해두고 계산하는 방식이고 (Infrared cut-off), 
+재규격화는 최소 단위 길이를 정함으로써 파장의 하한을 정해두고 계산하는 방식(Ultraviolet cut-off)입니다. 
+이러한 차이는 통계역학과 양자장론을 병합하기 어렵게 하는 장벽이 되며, 전통적으로 두 분야가 전혀 다른 영역으로 취급받던 이유가 됩니다. 
+
+
 ## 1. Path integrals in classical theory
 [1.1 Brownian motion]()  
 [1.2 Wiener path integrals and stochastic processes]()  
