@@ -6,7 +6,7 @@ categories:
   - Physics
 tags:
   - Path Integral
-published: false
+published: true
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
@@ -37,8 +37,6 @@ M. Chaichian and A. Demichev, "Path Integrals in Physics", IOP (2001) [link](htt
 1950년대로 넘어오면서 양자장론 영역에서 많은 연구가 이뤄졌고, 이후에도 상전이, 초유체, 초전도체, Ising 모델, 양자광학, 플라즈마 물리 등의 영역에서 폭넓게 사용되었다.
 1955년, Feynman은 polaron 문제를 풀며 양자역학의 variational principle을 발견했고, 이후 양자장론 뿐 아니라 통계역학과 고체역학에서 매우 큰 영향을 주었다.
 
-
-경로적분은 다음과 같은 성질을 가진다. 
 ### Universality
 Stochastic process, Quantum mechanics에서의 전이 확률은 아래와 같은 형태를 띈다. 
 $$
@@ -51,8 +49,29 @@ $$
 통계역학에서는 $\hbar$가 $k_B T$로 바뀌고, Action $S$가 에너지 $E$로 바뀌는 차이일 뿐이다. 
 이 경우, 이들의 단순합은 쉽사리 무한대가 나오기 때문에 이를 해소하는과정이 필요하다. 통계역학에서는 이를 두고 열역학적 극한이라 부르고, 양자장론에서는 재규격화라고 한다. 
 다만 둘은 규격화 방식에 있어 차이가 있는데, 통계역학적 극한은 시스템 크기를 점차 키워가는 방식이라 파장의 상한을 정해두고 계산하는 방식이고 (Infrared cut-off), 
-재규격화는 최소 단위 길이를 정함으로써 파장의 하한을 정해두고 계산하는 방식(Ultraviolet cut-off)입니다. 
-이러한 차이는 통계역학과 양자장론을 병합하기 어렵게 하는 장벽이 되며, 전통적으로 두 분야가 전혀 다른 영역으로 취급받던 이유가 됩니다. 
+재규격화는 최소 단위 길이를 정함으로써 파장의 하한을 정해두고 계산하는 방식(Ultraviolet cut-off)이다. 
+이러한 차이는 통계역학과 양자장론을 병합하기 어렵게 하는 요소이며, 전통적으로 두 분야가 전혀 다른 영역으로 취급받던 이유다.
+이처럼 경로적분은 적용되는 분야가 상이함에도 불구하고 보편적인 형태를 보여준다.
+
+### Differ from multiple finite-dimensional integrals
+얼핏 보았을 때 경로적분은 범함수의 적분처럼 보입니다.
+범함수의 적분은 Volterra에 의해 1965년 아래롸 같은 규칙으로 사용되었는데,
+1. 함수를 쪼개 $N$개 변수의 함수로 범함수를 변환함
+2. 적분을 수행함
+3. $N$을 무한대로의 극한으로 보냈을 때, 적분 결과의 극한을 구함. 
+
+하지만 경로적분에서는 이러한 방식이 작동하지 않았고, Wiener process를 밑거름 삼아 보다 더 정밀한 경로적분의 정의를 세울 수 있었다.
+이를 간단히 살펴보자. 
+실수 벡터 $\mathbb{R}^n$는 Lebesgue measure가 존재하여 적분이 가능합니다. 그럼 같은 성질을 가지는 measure가 무한차원에서도 존재해서 무한차원 벡터의 함수로 적분이 가능할까?
+그렇지 않다. 증명은 다음과 같다.  
+무한차원 공간 $\mathbb{R}^\inf$에서의 orthonormal basis $\left{ e_1, e_2, \cdots \right}$를 생각했을 때,
+$e_k$를 중심으로 하는 반지름 $1/2$인 구 $B_k$와, 원점을 중심으로 하는 반지름 $2$인 $B$를 생각할 수 있다.
+이 공간에 measure $\mu$가 있다면, $0 < \mu(B_1) = \mu(B_2) = \cdots < \inf$를 만족할 것이고, 
+또한 이들은 서로 교집합이 없기 때문에 measure의 $additivity$ 성질에 따라 $\mu(B) > \sum_k B_k =  \inf$가 된다. 
+bounded set의 measure가 무한대일 수 없기 때문에 이러한 measure는 존재하지 않는다. 
+ 결과적으로 유한 차원 벡터의 함수와 무한차원 범함수의 공간은 같은 형태의 measure로 취급될 수 없고, 범함수의 적분은 그 자체에 대한 이론을 새로이 구축할 필요가 있습니다.
+
+
 
 
 ## 1. Path integrals in classical theory
