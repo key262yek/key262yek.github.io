@@ -64,12 +64,12 @@ $$
 이를 간단히 살펴보자. 
 실수 벡터 $\mathbb{R}^n$는 Lebesgue measure가 존재하여 적분이 가능합니다. 그럼 같은 성질을 가지는 measure가 무한차원에서도 존재해서 무한차원 벡터의 함수로 적분이 가능할까?
 그렇지 않다. 증명은 다음과 같다.  
-무한차원 공간 $\mathbb{R}^\inf$에서의 orthonormal basis $\left{ e_1, e_2, \cdots \right}$를 생각했을 때,
+무한차원 공간 $\mathbb{R}^\infty$에서의 orthonormal basis $\qty{ e_1, e_2, \cdots }$를 생각했을 때,
 $e_k$를 중심으로 하는 반지름 $1/2$인 구 $B_k$와, 원점을 중심으로 하는 반지름 $2$인 $B$를 생각할 수 있다.
-이 공간에 measure $\mu$가 있다면, $0 < \mu(B_1) = \mu(B_2) = \cdots < \inf$를 만족할 것이고, 
-또한 이들은 서로 교집합이 없기 때문에 measure의 $additivity$ 성질에 따라 $\mu(B) > \sum_k B_k =  \inf$가 된다. 
+이 공간에 measure $\mu$가 있다면, $0 < \mu(B_1) = \mu(B_2) = \cdots < \infty$를 만족할 것이고, 
+또한 이들은 서로 교집합이 없기 때문에 measure의 $additivity$ 성질에 따라 $\mu(B) > \sum_k B_k =  \infty$가 된다. 
 bounded set의 measure가 무한대일 수 없기 때문에 이러한 measure는 존재하지 않는다. 
- 결과적으로 유한 차원 벡터의 함수와 무한차원 범함수의 공간은 같은 형태의 measure로 취급될 수 없고, 범함수의 적분은 그 자체에 대한 이론을 새로이 구축할 필요가 있습니다.
+결과적으로 유한 차원 벡터의 함수와 무한차원 범함수의 공간은 같은 형태의 measure로 취급될 수 없고, 범함수의 적분은 그 자체에 대한 이론을 새로이 구축할 필요가 있습니다.
 
 
 
