@@ -2,7 +2,7 @@
 title: "Fluctuation Dissipation Theorem"
 date: 2021-03-26T21:35:30-1:00
 categories:
-  - Statistical Physics
+  - Statistical_Physics
 tags:
   - Fluctuation Dissipation Theorem
   - R.Kubo
