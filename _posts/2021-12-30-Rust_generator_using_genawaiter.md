@@ -120,7 +120,7 @@ genawaiter crate는 [await / async](https://rust-lang.github.io/async-book/03_as
 여기서 $\sigma^x_n, \sigma^y_n, \sigma^z_n$는 각각 $n$번째 입자의 $x, y, z$방향 spin을 의미합니다.
 $\sigma^x_n$와 $\sigma^y_n$는 raising, lowering operator $\sigma_n^{\pm} = (\sigma_n^x \pm i \sigma_n^y) / 2$를 이용해 아래와 같이 적힙니다. 
 \begin{equation}
-    H_0 = -J\sum_{n=0}^{L - 1} \large[\sigma_n^{+} \sigma^{-}_{n+1} + \sigma_n^{-} \sigma^{+}_{n+1} + \frac{\Delta_0}{2} \sigma_n^z \sigma^z_{n+1} \large]
+    H_0 = -J\sum_{n=0}^{L - 1} \qty[\sigma_n^{+} \sigma^{-}_{n+1} + \sigma_n^{-} \sigma^{+}_{n+1} + \frac{\Delta_0}{2} \sigma_n^z \sigma^z_{n+1} ]
 \end{equation}
 이를 설명하자면 앞의 두 항은 $n$번째 입자와 $n+1$번째 입자의 $z$방향 spin이 서로 다른 경우에 한해서 $-J$의 에너지가 존재함을 의미하며, 시스템의 양자상태는 Hamiltonian에 의해 $n$번째 입자와 $n+1$번째 입자의 spin이 서로 교환된 상태가 됩니다. 
 마지막 항은 두 인접한 입자의 $z$방향 spin이 같으면 $- J \Delta_0 / 2$가 추가되고, 서로 다른 경우 $J \Delta_0 / 2$가 추가되며, 이 경우엔 시스템의 양자상태가 변화하지 않습니다.
