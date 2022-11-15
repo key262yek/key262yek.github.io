@@ -5,9 +5,6 @@ categories:
   - Review
 tags:
   - Feminist Philosophy on Science
-  - Meta-Philosophical Reflection on Feminist Philosophies of Science
-  - Maria Cristina Amoretti
-  - Nicla Vassallo
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"

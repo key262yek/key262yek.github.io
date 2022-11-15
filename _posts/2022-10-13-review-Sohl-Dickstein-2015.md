@@ -5,7 +5,7 @@ categories:
   - Review
 tags:
   - Deep Learning
-  - Statistical_Physics
+  - Statistical Physics
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-clipboard-list"
