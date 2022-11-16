@@ -21,14 +21,14 @@ title: "About"
 First-passage dynamics by aggregating particles
 "
 [Journal of Korean Physical Society
-79, 653-659 (2021)]("https://link.springer.com/article/10.1007/s40042-021-00278-w")
+79, 653-659 (2021)](https://link.springer.com/article/10.1007/s40042-021-00278-w)
 - C. Kim, S. Goh, M.S. Choi, K. Lee, and M.Y. Choi,
 "
 Hub-periphery hierarchy in
 bus transportation networks: Gini coefficients and the Seoul bus system
 "
 [Sustainability
-12, 7297 (2020)]("https://www.mdpi.com/2071-1050/12/18/7297")
+12, 7297 (2020)](https://www.mdpi.com/2071-1050/12/18/7297)
 
 ## Research Experience
 - Research on the first-passage dynamics of crowded particles in
