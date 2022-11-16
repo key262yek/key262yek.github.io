@@ -34,8 +34,7 @@ bus transportation networks: Gini coefficients and the Seoul bus system
 - Research on the first-passage dynamics of crowded particles in
 presence of interaction
 - Develop Brownian dynamics simulation using C, Python and Rust.
-- Optimize Hamiltonian diagonalization of quantum spin model by us-
-ing BLAS package in Python and Rust. 
+- Optimize Hamiltonian diagonalization of quantum spin model by using BLAS package in Python and Rust. 
 - Binding affinity prediction using Deep Learning
 - Manage a Linux cluster which contains 130 computing nodes
 
