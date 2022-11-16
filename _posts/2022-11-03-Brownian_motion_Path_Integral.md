@@ -1,6 +1,6 @@
 ---
 title: "Brownian motion: introduction to the concept of path integration"
-date: 2022-10-31
+date: 2022-11-03
 categories:
   - Review
   - Physics
