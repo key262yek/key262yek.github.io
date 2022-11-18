@@ -105,7 +105,7 @@ generator가 외부에서 정의된 변수를 사용하는 경우 해당 변수�
 
 그래서 지금의 rust 버젼에서는 nightly feature로만 generator가 존재하고, stable에서 이용하기 위해서는 genawaiter crate를 이용해야합니다. 
 genawaiter crate는 [await / async](https://rust-lang.github.io/async-book/03_async_await/01_chapter.html)를 이용해 generator 기능을 구현한 crate입니다. 
-이 문서에서는 spin chain에서 [hamiltonian matrix를 대각화하는 crate]("https://github.com/key262yek/exact_diagonalization")에서 genawaiter를 이용해 hamiltonian 구성을 간소화한 과정을 설명하고자 합니다. 
+이 문서에서는 spin chain에서 hamiltonian matrix를 대각화하는 [crate]("https://github.com/key262yek/exact_diagonalization")에서 genawaiter를 이용해 hamiltonian 구성을 간소화한 과정을 설명하고자 합니다. 
 
 먼저 시스템에 존재하는 입자들의 spin state는 $z$방향으로 up spin / down spin으로 존재할 수 있는데, up spin을 1로 down spin을 0으로 나타내면 $N$개 입자가 존재하는 시스템의 상태는 $N$-bit 숫자로 나타낼 수 있습니다.
 \begin{equation}
