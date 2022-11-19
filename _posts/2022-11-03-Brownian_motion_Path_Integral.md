@@ -34,3 +34,5 @@ toc_sticky: true
 \begin{equation}
     \pdv{\rho(x, t)}{t} = D \pdv[2]{\rho(x, t)}{x}
 \end{equation}
+
+### Diffusion equation: Microscopic approach
