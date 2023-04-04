@@ -64,17 +64,17 @@ area = L * p
 $x$가 작은 영역에 더 가중치를 두어 sampling하고 이를 토대로 넓이를 계산하는 방식이다. 
 이를 위해 적분과 $x$의 sampling 사이 관계를 좀 더 고찰해보자면 이렇다.
 \begin{equation}
-  \int_0^L e^{-e^x} \dd x = L * \int_0^L e^{-e^x} \frac{1}{L} \dd x = L E[e^{-e^x}]
+  \int_0^L e^{-e^x} \dd x = L \times \int_0^L e^{-e^x} \frac{1}{L} \dd x = L \quad \mathbb{E}[e^{-e^x}]
 \end{equation}
 즉, Monte Carlo integration은 다름이 아니라 함수의 평균값을 구하는 문제와 동일하다. 
 
 그렇기에 확률변수의 분포의 변화가 기댓값에 어떻게 영향을 주는지만 확인한다면 분포를 바꾸어 예측을 해볼 수 있다. 
 확률분포 $p(x)$를 따르는 확률변수의 $f(x)$에 대한 기댓값은 확률분포 $q(x)$를 따르는 확률 변수의 $f(x) p(x) / q(x)$의 기댓값과 같다. 
 \begin{equation}
-  E_{x \sim p} \qty[f(x)] 
+  \mathbb{E}_{x \sim p} \qty[f(x)] 
   = \int f(x) p(x) \dd x 
   = \int f(x) \frac{p(x)}{q(x)} q(x) \dd x
-  = E_{x \sim q} \qty[f(x) \frac{p(x)}{q(x)}]
+  = \mathbb{E}_{x \sim q} \qty[f(x) \frac{p(x)}{q(x)}]
 \end{equation}
 
 지금의 경우에 대응해보자면 $p(x) = 1/L, f(x) = e^{-e^x}$인 것이고,
@@ -112,13 +112,13 @@ sampling 방법은 Metropolis algorithm을 소개하며 설명할 것이니 미�
 \begin{equation}
   1 = \int_0^L \frac{1}{L} \dd x
   = \int_0^L \frac{1}{L C e^{-x}} C e^{-x} \dd x
-  = E\qty[\frac{1}{L C e^{-x}}] \\
+  = \mathbb{E}\qty[\frac{1}{L C e^{-x}}] \\
 \end{equation}
 
 따라서 적분은 아래와 같은 식으로 정리된다.
 \begin{equation}
   \int_0^L e^{-e^x} \dd x 
-  = \frac{1}{N} \sum_{i=1}^N \frac{e^{-e^{x_i}}}{e^{-x_i}}
+  = \frac{1}{N} \sum_{i=1}^N \frac{e^{-e^{x_i}}}{C e^{-x_i}}
   = L \frac{\sum_{i=1}^N e^{-e^{x_i}} / e^{-x_i}}{ \sum_{i = 1}^N 1 / e^{-x_i}}
 \end{equation}
 
