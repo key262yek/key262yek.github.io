@@ -13,7 +13,6 @@ toc_icon: "fas fa-clipboard-list"
 toc_sticky: true
 ---
 
-## Introduction
 
 확률밀도함수 $p(x)$를 완전히 아는 상황에서 1차원 확률변수를 sampling하는 가장 간단한 방법은 무엇일까?
 누적분포함수 $C(x) = P(X \leq x)$를 이용하는 것이다.
@@ -113,7 +112,7 @@ sampling 방법은 Metropolis algorithm을 소개하며 설명할 것이니 미�
 \begin{equation}
   1 = \int_0^L \frac{1}{L} \dd x
   = \int_0^L \frac{1}{L C e^{-x}} C e^{-x} \dd x
-  = E[\frac{1}{L C e^{-x}}] \\
+  = E\qty[\frac{1}{L C e^{-x}}] \\
 \end{equation}
 
 따라서 적분은 아래와 같은 식으로 정리된다.
@@ -128,7 +127,6 @@ sampling 방법은 Metropolis algorithm을 소개하며 설명할 것이니 미�
 def w(x):
     return np.exp(-x)
 
-h = 3
 current = np.random.uniform(0, L)
 samples = []
 for _ in range(N + 100):
@@ -163,21 +161,68 @@ new = current + np.random.uniform(-dx, dx) # case 2
 ```
 두 방법 모두 전이 확률이 대칭적인 분포이다. 
 즉, current가 $x$인 상황에서 $x'$이 candidate로 나오는 확률과 current가 $x'$인 상황에서 $x$가 candidate으로 나오는 확률이 같다.
-하지만 항상 이런 경우만 있으리란 보장은 없으므로 비대칭적인 전이확률을 가지는 경우까지 확장한 경우가 Hastings가 제안한 방법이다. 
+하지만 항상 이런 경우만 있으리란 보장은 없으므로 비대칭적인 확률을 가지는 경우까지 확장한 경우가 Hastings가 제안한 방법이다. 
 
 그 경우 sample candidate이 accept될 확률이 아래와 같이 바뀐다.
+$$
 \begin{align}
-    A(x'|x) &= min\qty(1, \frac{w(x')}{w(x)}) \tag{Metropolis} //
-    A(x'|x) &= min\qty(1, \frac{w(x')p(x'|x)}{w(x)p(x | x')}) \tag{Hastings}
+    A(x'|x) &= min\qty(1, \frac{w(x')}{w(x)}) \tag{Metropolis} \\
+    A(x'|x) &= min\qty(1, \frac{w(x')p(x'\rightarrow x)}{w(x)p(x \rightarrow x')}) \tag{Hastings}
 \end{align}
+$$
+
+이렇게 Acceptance probability를 조정하면, 비대칭적인 전이확률로 주어진 Markov chain sampling이라 하더라도 sampling의 분포는 $w(x)$에 비례하는 확률분포를 따르게 된다. 
 
 ## Detailed balance
 이를 이해하기 위해서 우리는 sampling을 반복함에 따라 sample들이 따르는 확률분포가 어떻게 변하는지 추적할 필요가 있다. 
 $n$번째 sample이 따르는 확률 분포를 $p_n(x)$라 하자. 
 이를 통해 $n + 1$번째 sample의 확률분포 $p_{n+1}(x)$가 어떻게 주어질지 알아보자. 
 
-$p_n(x_n)\dd x_n$의 확률로 주어진 $n$번째 sample $x_n$이 있을 때,
-그 다음 sample $x_{n+1}$은 transition probability $p(x_n \rightarrow x_{n+1}) = p(x_{n+1} | x_n)$의 확률로 결정된다. 
+$p_n(x)\dd x$의 확률로 주어진 $n$번째 sample $x$가 있을 때,
+그 다음 sample $x'$은 $p(x \rightarrow x')$의 확률로 결정된다. 
+그리고 그 sample이 accept 될 확률은 $A(x'|x)$이다.
+따라서 $p_{n}(x)$에서 $\int \dd x' p(x \rightarrow x') A(x' | x) p_n(x)$ 만큼의 확률은 다음 sample에서 다른 값의 확률로 옮겨간다.
+반대로 생각하면 다른 위치 $x'$에서도 $x$ 위치로의 확률 이동이 존재한다.
+그 값은 $\int \dd x' p(x' \rightarrow x) A(x | x) p_n(x')$이 된다.
+따라서 $p_n(x)$의 점화식은 아래와 같이 주어진다.
+
+\begin{equation}
+  p_{n+1}(x) = p_n(x) + \int \dd x' (p(x' \rightarrow x) A(x|x') p_n(x') - p(x \rightarrow x') A(x'|x) p_n(x))
+\end{equation}
+
+이 점화식을 완전히 푸는 것은 쉽지 않다.
+하지만 이 해의 극한이 어떤 평형 조건을 만족할지는 구할 수 있다. 
+\begin{equation}
+  p(x' \rightarrow x) A(x|x') p(x') = p(x \rightarrow x') A(x'|x) p(x)
+\end{equation}
+
+따라서 평형 상태에서의 두 지점의 확률분포 비율 $p(x')/p(x)$는 아래와 같이 주어진다. 
+\begin{equation}
+  \frac{p(x')}{p(x)}
+  = \frac{p(x \rightarrow x') A(x'|x)}{p(x' \rightarrow x) A(x|x')}
+\end{equation}
+
+이제 우리가 알아야 하는 것은 Accetance probability의 비율이다. 
+만약 $w(x')p(x' \rightarrow x) > w(x) p(x \rightarrow x')$라면
+$A(x'|x) = 1$로 주어지므로 
+\begin{equation}
+  \frac{A(x' | x)}{A (x | x')} = \frac{1}{A(x|x')} = \frac{w(x')p(x' \rightarrow x)}{w(x)p(x \rightarrow x')}
+\end{equation}
+이 되고, 반대의 경우도 최종 결과 값은 동일하다. 
+따라서 앞선 식에 이를 대입하면 우리는 평형 분포의 비율을 구할 수 있다.
+\begin{equation}
+  \frac{p(x')}{p(x)}
+  = \frac{p(x \rightarrow x')}{p(x' \rightarrow x)}\frac{w(x')p(x' \rightarrow x)}{w(x)p(x \rightarrow x')}
+  = \frac{w(x')}{w(x)}
+\end{equation}
+
+## Conclusion
+이렇게 MH algorithm의 복잡한 sampling 방법이 어떻게 원하는 분포를 따라 sampling을 할 수 있게 되었는지 확인하였다. 
+정리하자면 아래와 같은 부분을 확인할 수 있었다.
+
+1. MH algorithm의 사용처: 확률분포의 함수 꼴은 알지만 normalization factor를 계산하는 것은 매우 어려울 때
+2. MH algorithm의 알고리즘 핵심: New sample을 reject하는 acceptance probability
+3. MH algorithm의 작동원리: 분포의 점화식의 극한이 이루게 되는 detailed balance가 우리가 원하는 확률분포를 이루도록 강제하는 것.
 
 
 
