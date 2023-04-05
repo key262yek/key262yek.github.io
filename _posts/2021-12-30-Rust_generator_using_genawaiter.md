@@ -247,8 +247,8 @@ Code block의 내부에서는 state의 representation number를 num에 받고,
 bit 숫자를 iterate합니다. 
 이 기능을 담당하는 iterator를 호출해주는 것이 periodic_pair_enumerate()입니다. 
 $i$번째 bit $s_i$와 $j$번째 bit $s_j$를 출력해주는데, 어차피 인접한 bit임에도 $i,j$로 나눈 이유는 시스템이 periodic하기 때문에 $(L, 0)$ pair도 존재하기 때문입니다.
-$s_i$와 $s_j$를 비교했을 때 다른 경우엔 bit를 바꾸어 숫자와 에너지 값을 yield해줍니다.
-그리고 diagonal 항에 해당하는 값은 계속 sum에 더해준 후 맨 마지막에 state 자기 자신의 representation 숫자와 sum을 반환하고 iterator는 끝나게 됩니다.
+$s_i$와 $s_j$가 서로 다른 경우엔 bit를 바꾸어 숫자와 에너지 값을 yield해줍니다.
+그리고 diagonal 항에 해당하는 값은 모두 더해준 후 마지막에 state 자기 자신의 representation 숫자와 sum을 반환하고 iterator는 끝나게 됩니다.
 
 이런 식으로 코드를 짜게 되면 실제 계산 코드에서는 아래와 같이 사용할 수 있습니다.
 ```rust
@@ -262,6 +262,6 @@ for (rep, value) in xxz.apply_to(state){
 
 ```
 
-물론 generator 내부 code block이 그다지 복잡하지 않으니 굳이 rust에서 구현하기 어려운 generator까지 이용해 함수를 선언해야 하느냐 물으신다면 그럴 필요가 없을 수도 있겠습니다만, 공부를 겸하기도 하고, iterator의 맥락에서 훨씬 간단하게 코드를 읽을 수 있도록 하기 때문에 장단이 있지 않았나 생각합니다. 
+물론 generator 내부 code block이 그다지 복잡하지 않으니 굳이 rust에서 구현하기 어려운 generator까지 이용해 함수를 선언해야 하느냐 물으신다면, 그럴 필요는 없을 수도 있습니다. 하지만 공부를 겸하며 작성한 코드기도 하고, iterator의 맥락에서 훨씬 간단하게 코드를 읽을 수 있도록 하기 때문에 장단이 있지 않았나 생각합니다. 
 
 
