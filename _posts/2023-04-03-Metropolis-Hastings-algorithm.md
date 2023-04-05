@@ -196,6 +196,7 @@ $p_n(x)\dd x$의 확률로 주어진 $n$번째 sample $x$가 있을 때,
 이로부터 $p_n(x)$의 점화식을 구할 수 있습니다.
 
 \begin{equation}
+  \hspace{-30pt}
   p_{n+1}(x) = p_n(x) + \int \dd x' (p(x' \rightarrow x) A(x|x') p_n(x') - p(x \rightarrow x') A(x'|x) p_n(x))
 \end{equation}
 
