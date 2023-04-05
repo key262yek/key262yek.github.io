@@ -165,11 +165,11 @@ Metropolis algorithm의 확장판인 MH algorithm은 새로운 sample candidate�
 new = np.random.uniform(0, L)   # case 1
 new = current + np.random.uniform(-dx, dx) # case 2
 ```
-두 방법 모두 전이 확률이 대칭적인 분포인 것을 알 수 있는데요. 
-대칭적인 분포란 것은, current가 $x$인 상황에서 $x'$이 candidate로 나오는 확률과 current가 $x'$인 상황에서 $x$가 candidate으로 나오는 확률이 같다는 것입니다.
-하지만 항상 이런 경우만 있으리란 보장은 없으므로 비대칭적인 확률을 가지는 경우까지 확장한 경우가 Hastings가 제안한 MH algorithm입니다. 
+두 방법 모두 전이 확률이 대칭적인 분포인 것을 알 수 있습니다. 
+(current가 $x$인 상황에서 $x'$이 candidate로 나오는 확률과 current가 $x'$인 상황에서 $x$가 candidate으로 나오는 확률이 같을 때, 대칭적인 분포라 부릅니다)
+하지만 항상 대칭적인 분포로 sampling하란 법은 없으므로 비대칭적인 분포까지 확장한 경우가 Hastings가 제안한 MH algorithm입니다. 
 
-Hastings algorithm에서는 sample candidate이 accept될 확률만 아래와 같이 바뀝니다.
+Hastings algorithm에서는 acceptance probability만 아래와 같이 바뀝니다.
 
 $$
 \begin{align}
@@ -181,29 +181,30 @@ $$
 이렇게 Acceptance probability를 조정하면, 비대칭적인 전이확률로 주어진 Markov chain sampling이라 하더라도 sampling의 분포는 $w(x)$에 비례하는 확률분포를 따르게 됩니다. 
 
 ## Detailed balance
-그래서 왜 MH algorithm을 반복하다 보면 sample 분포가 원하는 분포로 수렴하게 되는 것일까요?
-이를 이해하기 위해서 우리는 sample들이 따르는 확률분포가 sampling을 반복함에 따라 어떻게 변하는지 추적할 필요가 있습니다. 
-$n$번째 sample이 따르는 확률 분포를 $p_n(x)$라 할 때, $n + 1$번째 sample의 확률분포 $p_{n+1}(x)$가 어떻게 주어질지 알아봅시다. 
+왜 MH algorithm을 반복하다 보면 sample 분포가 원하는 분포로 수렴하게 되는 것일까요?
+이를 이해하기 위해서 우리는 sample 분포가 sampling을 반복함에 따라 어떻게 변하는지 추적할 필요가 있습니다. 
+$n$번째 sample 분포를 $p_n(x)$라 할 때, $n + 1$번째 sample 분포 $p_{n+1}(x)$가 어떻게 주어질지 알아봅시다. 
 
 $p_n(x)\dd x$의 확률로 주어진 $n$번째 sample $x$가 있을 때,
 그 다음 sample의 값이 $x'$로 주어질 확률을 $p(x \rightarrow x') \dd x'$라 합시다. 
 그리고 그 sample이 진짜 다음 sample로 accept 될 확률은 $A(x'|x)$입니다.
-따라서 $p_{n}(x) \dd x$에서 $p(x \rightarrow x') A(x' | x) p_n(x) \dd x \dd x'$ 만큼의 확률은 다음 sample에서 $x'$의 확률로 옮겨가게 됩니다.
+따라서 $p_{n}(x) \dd x$에서 $p(x \rightarrow x') A(x' | x) p_n(x) \dd x \dd x'$ 만큼의 확률은 다음 sample로 $x'$이 나올 확률이 됩니다.
 
-반대로 생각하면 다른 위치 $x'$에서도 $x$ 위치로의 확률 이동이 존재합니다.
+반대로 생각하면 다른 위치 $x'$에서도 $x$로의 확률 이동이 존재합니다.
 그 값은 $p(x' \rightarrow x) A(x | x) p_n(x') \dd x \dd x'$이죠.
-이러한 확률분포의 flow를 모든 $x'$에 대해 적분하면 $p_n(x)$의 점화식을 구할 수 있습니다.
+확률 flow를 모든 $x'$에 대해 적분하면 $p_n(x)$의 알짜 변화량을 구할 수 있게 되고, 
+이로부터 $p_n(x)$의 점화식을 구할 수 있습니다.
 
 \begin{equation}
   p_{n+1}(x) = p_n(x) + \int \dd x' (p(x' \rightarrow x) A(x|x') p_n(x') - p(x \rightarrow x') A(x'|x) p_n(x))
 \end{equation}
 
 이 점화식을 완전히 푸는 것은 쉽지 않습니다.
-하지만 이 해의 극한이 어떤 평형 조건을 만족할지는 쉽게 보입니다. 
+하지만 해의 극한이 어떤 평형 조건을 만족할지는 쉽게 보입니다. 
 \begin{equation}
   p(x' \rightarrow x) A(x|x') p(x') = p(x \rightarrow x') A(x'|x) p(x)
 \end{equation}
-평형 상태에서의 두 지점의 확률분포비 $p(x')/p(x)$는 아래와 같이 결정됩니다. 
+따라서 평형 상태에서의 두 지점의 확률분포비 $p(x')/p(x)$는 아래와 같이 결정됩니다. 
 \begin{equation}
   \frac{p(x')}{p(x)}
   = \frac{p(x \rightarrow x') A(x'|x)}{p(x' \rightarrow x) A(x|x')}
@@ -216,7 +217,7 @@ $A(x'|x) = 1$로 주어지므로
   \frac{A(x' | x)}{A (x | x')} = \frac{1}{A(x|x')} = \frac{w(x')p(x' \rightarrow x)}{w(x)p(x \rightarrow x')}
 \end{equation}
 이 되고, 반대의 경우도 최종 결과 값은 동일합니다. 
-따라서 앞선 식에 이를 대입하면 우리는 평형 분포가 $w(x)$의 비율로 주어짐을 알 수 있고, 자연스레 우리가 원하는 분포대로 sampling하게 되는 것입니다.
+앞선 식에 이를 대입하면 우리는 평형 분포가 $w(x)$의 비율로 주어짐을 알 수 있고, 평형 분포를 따르는 sample은 자연스레 우리가 원하는 분포를 따르게 되는 것입니다.
 \begin{equation}
   \frac{p(x')}{p(x)}
   = \frac{p(x \rightarrow x')}{p(x' \rightarrow x)}\frac{w(x')p(x' \rightarrow x)}{w(x)p(x \rightarrow x')}
@@ -224,7 +225,7 @@ $A(x'|x) = 1$로 주어지므로
 \end{equation}
 
 ## Conclusion
-이렇게 MH algorithm의 복잡한 sampling 방법이 어떻게 원하는 분포를 따라 sampling을 할 수 있게 되었는지 알아봤습니다. 
+이렇게 MH algorithm의 복잡한 sampling 방법이 어떻게 원하는 분포를 따르는지 알아봤습니다. 
 
 1. MH algorithm의 사용처: 확률분포의 함수 꼴은 알지만 normalization factor를 계산하는 것은 매우 어려울 때
 2. MH algorithm의 알고리즘 핵심: New sample을 reject하는 acceptance probability의 정의
