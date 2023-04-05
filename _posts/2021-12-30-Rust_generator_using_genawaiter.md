@@ -131,12 +131,14 @@ $\sigma^x_n$와 $\sigma^y_n$는 raising, lowering operator $\sigma_n^{\pm} = (\s
 이를 설명하자면 앞의 두 항은 $n$번째 입자와 $n+1$번째 입자의 $z$방향 spin이 서로 다른 경우에 한해서 $-J$의 에너지가 존재함을 의미하며, 시스템의 양자상태는 Hamiltonian에 의해 $n$번째 입자와 $n+1$번째 입자의 spin이 서로 교환된 상태가 됩니다. 
 마지막 항은 두 인접한 입자의 $z$방향 spin이 같으면 $- J \Delta_0 / 2$가 추가되고, 서로 다른 경우 $J \Delta_0 / 2$가 추가되며, 이 경우엔 시스템의 양자상태가 변화하지 않습니다.
 bit를 이용해 설명하자면 5개 입자 중 3개 입자가 up spin인 상태 $\ket{11010}$는 Hamiltonian이 적용됨에 따라 아래와 같이 변합니다. 
+
 $$
 \begin{align}
     H_0 \ket{11010} = &- \frac{3}{2} \Delta_0 J\ket{11010} - J\ket{10110} -J \ket{11100} \nonumber \\
     & -J \ket{11001} -J \ket{01011} 
 \end{align}
 $$
+
 $H_0$의 행렬 표현에서 $i,j$ 요소는 $\bra{i}H_0\ket{j}$로 주어지며, 이를 구하기 위해서는 숫자 $j$가 주어졌을 때 $H_{0, ij}$가 $0$이 되지 않는 $i$를 출력해줄 수 있어야합니다. 
 바로 이 지점이 generator를 이용하고자 하는 부분입니다. 
 
